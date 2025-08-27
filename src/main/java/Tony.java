@@ -1,8 +1,22 @@
 import java.util.Scanner;
 
 public class Tony {
+    private static void listTasks(String[] tasks) {
+        int index = 0;
+        for (String task : tasks) {
+            if (task == null) {
+                break;
+            }
+            System.out.println(index + ". " + task);
+            index++;
+        }
+        System.out.println("____________________________________________________________");
+    }
+
     public static void main(String[] args) {
         String userInput = "";
+        String[] tasks = new String[100];
+        int index = 0;
         Scanner in = new Scanner(System.in);
 
         System.out.println("____________________________________________________________");
@@ -12,9 +26,15 @@ public class Tony {
 
         while (!userInput.equals("bye")) {
             userInput = in.nextLine();
-            System.out.println("____________________________________________________________");
-            System.out.println(userInput);
-            System.out.println("____________________________________________________________");
+            if (userInput.equals("list")) {
+                listTasks(tasks);
+            } else {
+                tasks[index] = userInput;
+                index++;
+                System.out.println("____________________________________________________________");
+                System.out.println("added: " + userInput);
+                System.out.println("____________________________________________________________");
+            }
         }
 
         System.out.println("Bye. Hope to see you again soon!");
