@@ -16,8 +16,8 @@ public class Tony {
 
     public static void main(String[] args) {
         String userInput = "";
-        Task[] tasks = new Task[100];
         int index = 0;
+        Task[] tasks = new Task[100];
         Scanner in = new Scanner(System.in);
 
         System.out.println("____________________________________________________________");
