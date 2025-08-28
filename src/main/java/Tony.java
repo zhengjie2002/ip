@@ -1,13 +1,13 @@
 import java.util.Scanner;
 
 public class Tony {
-    private static void listTasks(String[] tasks) {
+    private static void listTasks(Task[] tasks) {
         int index = 0;
-        for (String task : tasks) {
+        for (Task task : tasks) {
             if (task == null) {
                 break;
             }
-            System.out.println(index + ". " + task);
+            System.out.println(index + ". " + task.getDescription());
             index++;
         }
         System.out.println("____________________________________________________________");
@@ -15,7 +15,7 @@ public class Tony {
 
     public static void main(String[] args) {
         String userInput = "";
-        String[] tasks = new String[100];
+        Task[] tasks = new Task[100];
         int index = 0;
         Scanner in = new Scanner(System.in);
 
@@ -29,11 +29,9 @@ public class Tony {
             if (userInput.equals("list")) {
                 listTasks(tasks);
             } else {
-                tasks[index] = userInput;
+                Task newTask = new Task(userInput);
+                tasks[index] = newTask;
                 index++;
-                System.out.println("____________________________________________________________");
-                System.out.println("added: " + userInput);
-                System.out.println("____________________________________________________________");
             }
         }
 
