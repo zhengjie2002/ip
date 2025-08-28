@@ -2,12 +2,13 @@ import java.util.Scanner;
 
 public class Tony {
     private static void listTasks(Task[] tasks) {
-        int index = 0;
+        int index = 1;
         for (Task task : tasks) {
             if (task == null) {
                 break;
             }
-            System.out.println(index + ". " + task.getDescription());
+            System.out.print(index + ".");
+            task.printTask();
             index++;
         }
         System.out.println("____________________________________________________________");
@@ -24,10 +25,18 @@ public class Tony {
         System.out.println("What can I do for you?");
         System.out.println("____________________________________________________________");
 
-        while (!userInput.equals("bye")) {
+        while (true) {
             userInput = in.nextLine();
-            if (userInput.equals("list")) {
+            if (userInput.equals("bye")) {
+                break;
+            } else if (userInput.equals("list")) {
                 listTasks(tasks);
+            } else if (userInput.startsWith("mark")) {
+                char i = userInput.charAt(5);
+                tasks[Character.getNumericValue(i) - 1].markDone();
+            } else if (userInput.startsWith("unmark")) {
+                char i = userInput.charAt(7);
+                tasks[Character.getNumericValue(i) - 1].unmarkDone();
             } else {
                 Task newTask = new Task(userInput);
                 tasks[index] = newTask;
