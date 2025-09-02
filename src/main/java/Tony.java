@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 public class Tony {
     private static void listTasks(Task[] tasks) {
+        System.out.println("____________________________________________________________");
+        System.out.println("Here are the Tasks in your list:");
         int index = 1;
         for (Task task : tasks) {
             if (task == null) {
@@ -34,6 +36,11 @@ public class Tony {
                 Todo newTodo = new Todo(userInput);
                 tasks[index] = newTodo;
                 index++;
+                System.out.println("____________________________________________________________");
+                System.out.println("Got it. I've added this task:");
+                System.out.println(newTodo);
+                System.out.println("Now you have " + index + " task(s) in the list.");
+                System.out.println("____________________________________________________________");
             } else if (userInput.startsWith("deadline")) {
                 int indexOfDeadline = userInput.indexOf("/by");
                 Deadline newDeadlineObject = new Deadline(
@@ -41,6 +48,11 @@ public class Tony {
                         userInput.substring(indexOfDeadline + 3).trim());
                 tasks[index] = newDeadlineObject;
                 index++;
+                System.out.println("____________________________________________________________");
+                System.out.println("Got it. I've added this task:");
+                System.out.println(newDeadlineObject);
+                System.out.println("Now you have " + index + " task(s) in the list.");
+                System.out.println("____________________________________________________________");
             } else if (userInput.startsWith("event")) {
                 int indexOfEventFrom = userInput.indexOf("/from");
                 int indexOfEventTo = userInput.indexOf("/to");
@@ -51,6 +63,12 @@ public class Tony {
                         userInput.substring(indexOfEventTo + 3).trim());
                 tasks[index] = newEventObject;
                 index++;
+                System.out.println("____________________________________________________________");
+                System.out.println("Got it. I've added this task:");
+                System.out.println(newEventObject);
+                System.out.println("Now you have " + index + " task(s) in the list.");
+                System.out.println("____________________________________________________________");
+
             } else if (userInput.startsWith("mark")) {
                 char i = userInput.charAt(5);
                 tasks[Character.getNumericValue(i) - 1].markDone();

@@ -5,9 +5,6 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
-        System.out.println("____________________________________________________________");
-        System.out.println("added: " + description);
-        System.out.println("____________________________________________________________");
     }
 
     public void markDone() {
