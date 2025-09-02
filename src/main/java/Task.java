@@ -26,7 +26,8 @@ public class Task {
         System.out.println("____________________________________________________________");
     }
 
-    public void printTask() {
-        System.out.println((isDone ? "[X] " : "[ ] ") + description);
+    @Override
+    public String toString() {
+        return (isDone ? "[X] " : "[ ] ") + description;
     }
 }

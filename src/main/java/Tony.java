@@ -7,8 +7,7 @@ public class Tony {
             if (task == null) {
                 break;
             }
-            System.out.print(index + ".");
-            task.printTask();
+            System.out.println(index + "." + task);
             index++;
         }
         System.out.println("____________________________________________________________");
@@ -31,6 +30,10 @@ public class Tony {
                 break;
             } else if (userInput.equals("list")) {
                 listTasks(tasks);
+            } else if (userInput.startsWith("todo")) {
+                Todo newTodo = new Todo(userInput);
+                tasks[index] = newTodo;
+                index++;
             } else if (userInput.startsWith("mark")) {
                 char i = userInput.charAt(5);
                 tasks[Character.getNumericValue(i) - 1].markDone();
