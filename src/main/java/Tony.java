@@ -34,6 +34,13 @@ public class Tony {
                 Todo newTodo = new Todo(userInput);
                 tasks[index] = newTodo;
                 index++;
+            } else if (userInput.startsWith("deadline")) {
+                int indexOfDeadline = userInput.indexOf("/by");
+                Deadline newDeadlineObject = new Deadline(
+                        userInput.substring(8, indexOfDeadline).trim(),
+                        userInput.substring(indexOfDeadline+3).trim());
+                tasks[index] = newDeadlineObject;
+                index++;
             } else if (userInput.startsWith("mark")) {
                 char i = userInput.charAt(5);
                 tasks[Character.getNumericValue(i) - 1].markDone();
