@@ -38,8 +38,18 @@ public class Tony {
                 int indexOfDeadline = userInput.indexOf("/by");
                 Deadline newDeadlineObject = new Deadline(
                         userInput.substring(8, indexOfDeadline).trim(),
-                        userInput.substring(indexOfDeadline+3).trim());
+                        userInput.substring(indexOfDeadline + 3).trim());
                 tasks[index] = newDeadlineObject;
+                index++;
+            } else if (userInput.startsWith("event")) {
+                int indexOfEventFrom = userInput.indexOf("/from");
+                int indexOfEventTo = userInput.indexOf("/to");
+
+                Event newEventObject = new Event(
+                        userInput.substring(5, indexOfEventFrom).trim(),
+                        userInput.substring(indexOfEventFrom + 5, indexOfEventTo).trim(),
+                        userInput.substring(indexOfEventTo + 3).trim());
+                tasks[index] = newEventObject;
                 index++;
             } else if (userInput.startsWith("mark")) {
                 char i = userInput.charAt(5);
