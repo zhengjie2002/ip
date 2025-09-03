@@ -1,0 +1,11 @@
+list
+deadline BuyChickenRice /by Tomorrow
+todo get food
+list
+mark 2
+event project meeting /from Thurs 2pm /to Thurs 5pm
+list
+unmark 2
+mark 1
+list
+bye
