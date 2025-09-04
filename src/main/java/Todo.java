@@ -1,6 +1,6 @@
 public class Todo extends Task {
     public Todo(String description) {
-        super(description.substring(4).trim());
+        super(description);
     }
 
     @Override

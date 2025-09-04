@@ -1,88 +1,53 @@
 import java.util.Scanner;
 
 public class Tony {
-    private static void listTasks(Task[] tasks) {
-        System.out.println("____________________________________________________________");
-        System.out.println("Here are the Tasks in your list:");
-        int index = 1;
-        for (Task task : tasks) {
-            if (task == null) {
-                break;
-            }
-            System.out.println(index + "." + task);
-            index++;
-        }
-        System.out.println("____________________________________________________________");
-    }
+    private static final int MAX_TASKS = 100;
+
 
     public static void main(String[] args) {
         String userInput = "";
-        int index = 0;
-        Task[] tasks = new Task[100];
-        Scanner in = new Scanner(System.in);
 
-        System.out.println("____________________________________________________________");
-        System.out.println("Hello! I'm Tony");
-        System.out.println("What can I do for you?");
-        System.out.println("____________________________________________________________");
+        Scanner in = new Scanner(System.in);
+        TaskManager taskManager = new TaskManager(MAX_TASKS);
+
+        Ui.printWelcome();
 
         while (true) {
             userInput = in.nextLine();
             if (userInput.equals("bye")) {
                 break;
             } else if (userInput.equals("list")) {
-                listTasks(tasks);
+                Ui.listAllTasks(taskManager.getTasks());
             } else if (userInput.startsWith("todo")) {
-                Todo newTodo = new Todo(userInput);
-                tasks[index] = newTodo;
-                index++;
-                System.out.println("____________________________________________________________");
-                System.out.println("Got it. I've added this task:");
-                System.out.println(newTodo);
-                System.out.println("Now you have " + index + " task(s) in the list.");
-                System.out.println("____________________________________________________________");
+                Task newTask = new Todo(userInput.substring(4).trim());
+                taskManager.addTask(newTask);
+                Ui.printTaskAddedMessage(newTask, taskManager.getTaskCount());
             } else if (userInput.startsWith("deadline")) {
                 int indexOfDeadline = userInput.indexOf("/by");
-                Deadline newDeadlineObject = new Deadline(
-                        userInput.substring(8, indexOfDeadline).trim(),
+                Task newDeadlineObject = new Deadline(userInput.substring(8, indexOfDeadline).trim(),
                         userInput.substring(indexOfDeadline + 3).trim());
-                tasks[index] = newDeadlineObject;
-                index++;
-                System.out.println("____________________________________________________________");
-                System.out.println("Got it. I've added this task:");
-                System.out.println(newDeadlineObject);
-                System.out.println("Now you have " + index + " task(s) in the list.");
-                System.out.println("____________________________________________________________");
+                taskManager.addTask(newDeadlineObject);
+                Ui.printTaskAddedMessage(newDeadlineObject, taskManager.getTaskCount());
             } else if (userInput.startsWith("event")) {
                 int indexOfEventFrom = userInput.indexOf("/from");
                 int indexOfEventTo = userInput.indexOf("/to");
-
-                Event newEventObject = new Event(
-                        userInput.substring(5, indexOfEventFrom).trim(),
+                Task newEventObject = new Event(userInput.substring(5, indexOfEventFrom).trim(),
                         userInput.substring(indexOfEventFrom + 5, indexOfEventTo).trim(),
                         userInput.substring(indexOfEventTo + 3).trim());
-                tasks[index] = newEventObject;
-                index++;
-                System.out.println("____________________________________________________________");
-                System.out.println("Got it. I've added this task:");
-                System.out.println(newEventObject);
-                System.out.println("Now you have " + index + " task(s) in the list.");
-                System.out.println("____________________________________________________________");
-
+                taskManager.addTask(newEventObject);
+                Ui.printTaskAddedMessage(newEventObject, taskManager.getTaskCount());
             } else if (userInput.startsWith("mark")) {
                 char i = userInput.charAt(5);
-                tasks[Character.getNumericValue(i) - 1].markDone();
+                taskManager.markTaskDone(Character.getNumericValue(i) - 1);
             } else if (userInput.startsWith("unmark")) {
                 char i = userInput.charAt(7);
-                tasks[Character.getNumericValue(i) - 1].unmarkDone();
+                taskManager.markTaskUndone(Character.getNumericValue(i) - 1);
             } else {
-                Task newTask = new Task(userInput);
-                tasks[index] = newTask;
-                index++;
+                System.out.println("Sorry, I don't understand that command.");
             }
         }
 
-        System.out.println("Bye. Hope to see you again soon!");
-        System.out.println("____________________________________________________________");
+        Ui.printGoodbye();
     }
+
 }
