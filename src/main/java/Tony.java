@@ -49,7 +49,13 @@ public class Tony {
 
         while (!isExit) {
             String userInput = ui.readCommand(in);
-            Command command = Parser.parseCommand(userInput);
+            Command command;
+            try {
+                command = Parser.parseCommand(userInput);
+            } catch (NoDescriptionException e) {
+                ui.printErrorMessage("The description of a task cannot be empty.");
+                continue;
+            }
             isExit = executeCommand(command, taskManager, ui);
         }
 
