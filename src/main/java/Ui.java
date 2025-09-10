@@ -44,4 +44,10 @@ public class Ui {
     public String readCommand(Scanner in) {
         return in.nextLine();
     }
+
+    public void printErrorMessage(String message) {
+        System.out.println("____________________________________________________________");
+        System.out.println("Error: " + message);
+        System.out.println("____________________________________________________________");
+    }
 }
