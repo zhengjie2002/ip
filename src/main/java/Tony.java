@@ -55,6 +55,9 @@ public class Tony {
             } catch (NoDescriptionException e) {
                 ui.printErrorMessage("The description of a task cannot be empty.");
                 continue;
+            } catch (NoDeadlineException e) {
+                ui.printErrorMessage("The deadline of a task cannot be empty. Use the format: deadline <description> /by <deadline>");
+                continue;
             }
             isExit = executeCommand(command, taskManager, ui);
         }

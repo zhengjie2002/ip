@@ -16,8 +16,14 @@ public class Parser {
         if (indexOfBy == 0) {
             throw new NoDescriptionException();
         }
+        if (indexOfBy == -1) {
+            throw new NoDeadlineException();
+        }
         String description = arguments.substring(0, indexOfBy).trim();
         String by = arguments.substring(indexOfBy + 3).trim();
+        if (by.isEmpty()) {
+            throw new NoDeadlineException();
+        }
         return new Command(CommandType.ADD_DEADLINE, description, by);
     }
 
