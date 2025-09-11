@@ -55,7 +55,12 @@ public class Parser {
 
     private static Command parseMarkUnmarkCommand(CommandType type, String arguments) {
         // Convert to a zero-based index in integer for us to use
-        int taskIndex = Integer.parseInt(arguments.trim()) - 1;
+        int taskIndex;
+        try {
+            taskIndex = Integer.parseInt(arguments.trim()) - 1;
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException();
+        }
         return new Command(type, taskIndex);
     }
 

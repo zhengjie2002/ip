@@ -19,36 +19,40 @@ public class Tony {
     private static final int MAX_TASKS = 100;
 
     private static boolean executeCommand(Command command, TaskManager taskManager, Ui ui) {
-        switch (command.getType()) {
-        case EXIT:
-            return true;
-        case LIST:
-            ui.listAllTasks(taskManager.getTasks());
-            break;
-        case ADD_TODO:
-            Task newTask = new Todo(command.getDescription());
-            taskManager.addTask(newTask);
-            ui.printTaskAddedMessage(newTask, taskManager.getTaskCount());
-            break;
-        case ADD_DEADLINE:
-            Task newDeadlineTask = new Deadline(command.getDescription(), command.getBy());
-            taskManager.addTask(newDeadlineTask);
-            ui.printTaskAddedMessage(newDeadlineTask, taskManager.getTaskCount());
-            break;
-        case ADD_EVENT:
-            Task newEventTask = new Event(command.getDescription(), command.getFrom(), command.getTo());
-            taskManager.addTask(newEventTask);
-            ui.printTaskAddedMessage(newEventTask, taskManager.getTaskCount());
-            break;
-        case MARK:
-            taskManager.markTaskDone(command.getTaskIndex());
-            break;
-        case UNMARK:
-            taskManager.markTaskUndone(command.getTaskIndex());
-            break;
-        default:
-            ui.printUnknownCommandMessage();
-            break;
+        try {
+            switch (command.getType()) {
+            case EXIT:
+                return true;
+            case LIST:
+                ui.listAllTasks(taskManager.getTasks());
+                break;
+            case ADD_TODO:
+                Task newTask = new Todo(command.getDescription());
+                taskManager.addTask(newTask);
+                ui.printTaskAddedMessage(newTask, taskManager.getTaskCount());
+                break;
+            case ADD_DEADLINE:
+                Task newDeadlineTask = new Deadline(command.getDescription(), command.getBy());
+                taskManager.addTask(newDeadlineTask);
+                ui.printTaskAddedMessage(newDeadlineTask, taskManager.getTaskCount());
+                break;
+            case ADD_EVENT:
+                Task newEventTask = new Event(command.getDescription(), command.getFrom(), command.getTo());
+                taskManager.addTask(newEventTask);
+                ui.printTaskAddedMessage(newEventTask, taskManager.getTaskCount());
+                break;
+            case MARK:
+                taskManager.markTaskDone(command.getTaskIndex());
+                break;
+            case UNMARK:
+                taskManager.markTaskUndone(command.getTaskIndex());
+                break;
+            default:
+                ui.printUnknownCommandMessage();
+                break;
+            }
+        } catch (NullPointerException | ArrayIndexOutOfBoundsException e) {
+            ui.printErrorMessage("No such task in the list");
         }
         return false;
     }
@@ -78,6 +82,9 @@ public class Tony {
                 continue;
             } catch (NoEventEndException e) {
                 ui.printErrorMessage("The end time of an event cannot be empty. Use the format: event <description> /from <start time> /to <end time>");
+                continue;
+            } catch (NumberFormatException e) {
+                ui.printErrorMessage("Please provide a valid task number. Use the format: mark <task number> or unmark <task number>");
                 continue;
             }
             isExit = executeCommand(command, taskManager, ui);
