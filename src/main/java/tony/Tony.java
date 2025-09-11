@@ -10,6 +10,8 @@ import tony.task.Task;
 import tony.task.TaskManager;
 import tony.task.Todo;
 import tony.ui.Ui;
+import tony.exceptions.NoEventStartException;
+import tony.exceptions.NoEventEndException;
 
 import java.util.Scanner;
 
@@ -70,6 +72,12 @@ public class Tony {
                 continue;
             } catch (NoDeadlineException e) {
                 ui.printErrorMessage("The deadline of a task cannot be empty. Use the format: deadline <description> /by <deadline>");
+                continue;
+            } catch (NoEventStartException e) {
+                ui.printErrorMessage("The start time of an event cannot be empty. Use the format: event <description> /from <start time> /to <end time>");
+                continue;
+            } catch (NoEventEndException e) {
+                ui.printErrorMessage("The end time of an event cannot be empty. Use the format: event <description> /from <start time> /to <end time>");
                 continue;
             }
             isExit = executeCommand(command, taskManager, ui);

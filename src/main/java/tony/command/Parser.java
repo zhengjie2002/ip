@@ -2,25 +2,36 @@ package tony.command;
 
 import tony.exceptions.NoDeadlineException;
 import tony.exceptions.NoDescriptionException;
+import tony.exceptions.NoEventStartException;
+import tony.exceptions.NoEventEndException;
 
 public class Parser {
     private static Command parseEventCommand(String arguments) {
         int indexOfFrom = arguments.indexOf("/from");
         int indexOfTo = arguments.indexOf("/to");
-        if (indexOfFrom == 0) {
-            throw new NoDescriptionException();
+        if (indexOfFrom == -1) {
+            throw new NoEventStartException();
+        }
+        if (indexOfTo == -1) {
+            throw new NoEventEndException();
         }
         String description = arguments.substring(0, indexOfFrom).trim();
         String from = arguments.substring(indexOfFrom + 5, indexOfTo).trim();
         String to = arguments.substring(indexOfTo + 3).trim();
+        if (description.isEmpty()) {
+            throw new NoDescriptionException();
+        }
+        if (from.isEmpty()) {
+            throw new NoEventStartException();
+        }
+        if (to.isEmpty()) {
+            throw new NoEventEndException();
+        }
         return new Command(CommandType.ADD_EVENT, description, from, to);
     }
 
     private static Command parseDeadlineCommand(String arguments) {
         int indexOfBy = arguments.indexOf("/by");
-        if (indexOfBy == 0) {
-            throw new NoDescriptionException();
-        }
         if (indexOfBy == -1) {
             throw new NoDeadlineException();
         }
@@ -28,6 +39,9 @@ public class Parser {
         String by = arguments.substring(indexOfBy + 3).trim();
         if (by.isEmpty()) {
             throw new NoDeadlineException();
+        }
+        if (description.isEmpty()) {
+            throw new NoDescriptionException();
         }
         return new Command(CommandType.ADD_DEADLINE, description, by);
     }
