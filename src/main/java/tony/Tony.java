@@ -1,3 +1,5 @@
+package tony;
+
 import tony.command.Command;
 import tony.command.Parser;
 import tony.exceptions.NoDeadlineException;
