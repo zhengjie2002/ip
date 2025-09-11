@@ -1,3 +1,5 @@
+package tony.command;
+
 public class Command {
     private CommandType type;
     private String description;

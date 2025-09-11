@@ -1,4 +1,8 @@
+package tony.ui;
+
 import java.util.Scanner;
+
+import tony.task.Task;
 
 public class Ui {
     public void printWelcome() {

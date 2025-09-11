@@ -1,3 +1,8 @@
+package tony.command;
+
+import tony.exceptions.NoDeadlineException;
+import tony.exceptions.NoDescriptionException;
+
 public class Parser {
     private static Command parseEventCommand(String arguments) {
         int indexOfFrom = arguments.indexOf("/from");

@@ -1,3 +1,14 @@
+import tony.command.Command;
+import tony.command.Parser;
+import tony.exceptions.NoDeadlineException;
+import tony.exceptions.NoDescriptionException;
+import tony.task.Deadline;
+import tony.task.Event;
+import tony.task.Task;
+import tony.task.TaskManager;
+import tony.task.Todo;
+import tony.ui.Ui;
+
 import java.util.Scanner;
 
 public class Tony {
@@ -61,7 +72,6 @@ public class Tony {
             }
             isExit = executeCommand(command, taskManager, ui);
         }
-
         ui.printGoodbye();
     }
 }
