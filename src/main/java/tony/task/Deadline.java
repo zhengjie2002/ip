@@ -8,6 +8,10 @@ public class Deadline extends Task {
         this.doBy = doBy;
     }
 
+    public String getDoBy() {
+        return doBy;
+    }
+
     @Override
     public String toString() {
         return ("[D]" + (isDone ? "[X] " : "[ ] ") + description + " (by: " + doBy + ")");

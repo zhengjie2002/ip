@@ -6,6 +6,7 @@ public class Command {
     private String from;
     private String to;
     private String by;
+    private boolean isDone;
     private int taskIndex;
 
     public Command(CommandType type) {
@@ -19,24 +20,31 @@ public class Command {
     }
 
     // Constructor for todo commands
-    public Command(CommandType type, String description) {
+    public Command(CommandType type, String description, boolean isDone) {
         this.type = type;
         this.description = description;
+        this.isDone = isDone;
     }
 
     // Constructor for event commands
-    public Command(CommandType type, String description, String from, String to) {
+    public Command(CommandType type, String description, String from, String to, boolean isDone) {
         this.type = type;
         this.description = description;
         this.from = from;
         this.to = to;
+        this.isDone = isDone;
     }
 
     // Constructor for deadline commands
-    public Command(CommandType type, String description, String by) {
+    public Command(CommandType type, String description, String by, boolean isDone) {
         this.type = type;
         this.description = description;
         this.by = by;
+        this.isDone = isDone;
+    }
+
+    public boolean isDone() {
+        return isDone;
     }
 
     public CommandType getType() {
