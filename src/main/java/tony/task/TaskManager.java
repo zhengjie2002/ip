@@ -1,28 +1,32 @@
 package tony.task;
 
+import java.util.ArrayList;
+
 public class TaskManager {
-    private Task[] tasks;
+    ArrayList<Task> tasks;
     private int taskCount;
 
-    public TaskManager(int MAX_TASKS) {
-        this.tasks = new Task[MAX_TASKS];
+    public TaskManager() {
+        this.tasks = new ArrayList<>();
         this.taskCount = 0;
     }
 
     public void addTask(Task task) {
-        tasks[taskCount] = task;
+        tasks.add(task);
         taskCount++;
     }
 
     public void markTaskDone(int index) {
-        tasks[index].markDone();
+        Task task = tasks.get(index);
+        task.markDone();
     }
 
     public void markTaskUndone(int index) {
-        tasks[index].unmarkDone();
+        Task task = tasks.get(index);
+        task.unmarkDone();
     }
 
-    public Task[] getTasks() {
+    public ArrayList<Task> getTasks() {
         return tasks;
     }
 

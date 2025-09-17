@@ -1,5 +1,6 @@
 package tony.ui;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import tony.task.Task;
@@ -17,7 +18,7 @@ public class Ui {
         System.out.println("____________________________________________________________");
     }
 
-    public void listAllTasks(Task[] tasks) {
+    public void listAllTasks(ArrayList<Task> tasks) {
         System.out.println("____________________________________________________________");
         System.out.println("Here are the Tasks in your list:");
         int index = 1;
