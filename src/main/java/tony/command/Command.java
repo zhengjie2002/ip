@@ -12,7 +12,7 @@ public class Command {
         this.type = type;
     }
 
-    // Constructor for mark and unmark commands
+    // Constructor for mark and unmark commands and delete commands
     public Command(CommandType type, int taskIndex) {
         this.type = type;
         this.taskIndex = taskIndex;

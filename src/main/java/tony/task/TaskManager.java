@@ -33,4 +33,11 @@ public class TaskManager {
     public int getTaskCount() {
         return taskCount;
     }
+
+    public Task removeTask(int index) {
+        Task taskToRemove = tasks.get(index);
+        tasks.remove(index);
+        taskCount--;
+        return taskToRemove;
+    }
 }

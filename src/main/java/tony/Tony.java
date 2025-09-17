@@ -40,6 +40,10 @@ public class Tony {
                 taskManager.addTask(newEventTask);
                 ui.printTaskAddedMessage(newEventTask, taskManager.getTaskCount());
                 break;
+            case DELETE:
+                Task removedTask = taskManager.removeTask(command.getTaskIndex());
+                ui.printDeleteAcknowledgement(removedTask, taskManager.getTaskCount());
+                break;
             case MARK:
                 taskManager.markTaskDone(command.getTaskIndex());
                 break;

@@ -55,4 +55,12 @@ public class Ui {
         System.out.println("Error: " + message);
         System.out.println("____________________________________________________________");
     }
+
+    public void printDeleteAcknowledgement(Task removedTask, int newTaskCount) {
+        System.out.println("____________________________________________________________");
+        System.out.println("Noted. I've removed this task:");
+        System.out.println(" " + removedTask);
+        System.out.println("Now you have " + newTaskCount + " task(s) in the list.");
+        System.out.println("____________________________________________________________");
+    }
 }
