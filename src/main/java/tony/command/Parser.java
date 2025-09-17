@@ -27,7 +27,7 @@ public class Parser {
         if (to.isEmpty()) {
             throw new NoEventEndException();
         }
-        return new Command(CommandType.ADD_EVENT, description, from, to);
+        return new Command(CommandType.ADD_EVENT, description, from, to, false);
     }
 
     private static Command parseDeadlineCommand(String arguments) {
@@ -43,14 +43,14 @@ public class Parser {
         if (description.isEmpty()) {
             throw new NoDescriptionException();
         }
-        return new Command(CommandType.ADD_DEADLINE, description, by);
+        return new Command(CommandType.ADD_DEADLINE, description, by, false);
     }
 
     private static Command parseTodoCommand(String arguments) {
         if (arguments.isEmpty()) {
             throw new NoDescriptionException();
         }
-        return new Command(CommandType.ADD_TODO, arguments);
+        return new Command(CommandType.ADD_TODO, arguments, false);
     }
 
     private static Command parseMarkUnmarkCommand(CommandType type, String arguments) {

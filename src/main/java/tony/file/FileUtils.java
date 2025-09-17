@@ -24,14 +24,23 @@ public class FileUtils {
         case ADD_TODO:
             Task newTask = new Todo(command.getDescription());
             taskManager.addTask(newTask);
+            if (command.isDone()) {
+                newTask.markDone();
+            }
             break;
         case ADD_DEADLINE:
             Task newDeadlineTask = new Deadline(command.getDescription(), command.getBy());
             taskManager.addTask(newDeadlineTask);
+            if (command.isDone()) {
+                newDeadlineTask.markDone();
+            }
             break;
         case ADD_EVENT:
             Task newEventTask = new Event(command.getDescription(), command.getFrom(), command.getTo());
             taskManager.addTask(newEventTask);
+            if (command.isDone()) {
+                newEventTask.markDone();
+            }
             break;
         }
     }
