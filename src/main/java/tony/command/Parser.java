@@ -75,7 +75,6 @@ public class Parser {
         return new Command(CommandType.DELETE, taskIndex);
     }
 
-
     public static Command parseCommand(String userInput) {
         String[] words = userInput.split(" ", 2);
         String commandWord = words[0];

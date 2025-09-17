@@ -12,12 +12,17 @@ import tony.task.Todo;
 import tony.ui.Ui;
 import tony.exceptions.NoEventStartException;
 import tony.exceptions.NoEventEndException;
+import tony.file.FileUtils;
+import tony.task.TaskSerializer;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Tony {
 
-    private static boolean executeCommand(Command command, TaskManager taskManager, Ui ui) {
+    private static final String FILE_PATH = "./data/tony.txt";
+
+    private static boolean executeCommand(Command command, TaskManager taskManager, Ui ui, FileUtils fileUtils, TaskSerializer taskSerializer) {
         try {
             switch (command.getType()) {
             case EXIT:
@@ -28,16 +33,31 @@ public class Tony {
             case ADD_TODO:
                 Task newTask = new Todo(command.getDescription());
                 taskManager.addTask(newTask);
+                try {
+                    fileUtils.appendToFile(taskSerializer.serializeTask(newTask));
+                } catch (IOException e) {
+                    ui.printErrorMessage("Error writing to file: " + e.getMessage());
+                }
                 ui.printTaskAddedMessage(newTask, taskManager.getTaskCount());
                 break;
             case ADD_DEADLINE:
                 Task newDeadlineTask = new Deadline(command.getDescription(), command.getBy());
                 taskManager.addTask(newDeadlineTask);
+                try {
+                    fileUtils.appendToFile(taskSerializer.serializeTask(newDeadlineTask));
+                } catch (IOException e) {
+                    ui.printErrorMessage("Error writing to file: " + e.getMessage());
+                }
                 ui.printTaskAddedMessage(newDeadlineTask, taskManager.getTaskCount());
                 break;
             case ADD_EVENT:
                 Task newEventTask = new Event(command.getDescription(), command.getFrom(), command.getTo());
                 taskManager.addTask(newEventTask);
+                try {
+                    fileUtils.appendToFile(taskSerializer.serializeTask(newEventTask));
+                } catch (IOException e) {
+                    ui.printErrorMessage("Error writing to file: " + e.getMessage());
+                }
                 ui.printTaskAddedMessage(newEventTask, taskManager.getTaskCount());
                 break;
             case DELETE:
@@ -66,6 +86,14 @@ public class Tony {
         TaskManager taskManager = new TaskManager();
         Scanner in = new Scanner(System.in);
         Ui ui = new Ui();
+        FileUtils fileUtils = new FileUtils(FILE_PATH);
+        TaskSerializer taskSerializer = new TaskSerializer();
+
+        try {
+            fileUtils.loadFileContent(taskManager);
+        } catch (Exception e) {
+            ui.printErrorMessage("Error loading file: " + e.getMessage());
+        }
 
         ui.printWelcome();
 
@@ -90,7 +118,7 @@ public class Tony {
                 ui.printErrorMessage("Please provide a valid task number. Use the format: mark <task number> or unmark <task number>");
                 continue;
             }
-            isExit = executeCommand(command, taskManager, ui);
+            isExit = executeCommand(command, taskManager, ui, fileUtils, taskSerializer);
         }
         ui.printGoodbye();
     }
