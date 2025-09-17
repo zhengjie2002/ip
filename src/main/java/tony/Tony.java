@@ -16,7 +16,6 @@ import tony.exceptions.NoEventEndException;
 import java.util.Scanner;
 
 public class Tony {
-    private static final int MAX_TASKS = 100;
 
     private static boolean executeCommand(Command command, TaskManager taskManager, Ui ui) {
         try {
@@ -41,6 +40,10 @@ public class Tony {
                 taskManager.addTask(newEventTask);
                 ui.printTaskAddedMessage(newEventTask, taskManager.getTaskCount());
                 break;
+            case DELETE:
+                Task removedTask = taskManager.removeTask(command.getTaskIndex());
+                ui.printDeleteAcknowledgement(removedTask, taskManager.getTaskCount());
+                break;
             case MARK:
                 taskManager.markTaskDone(command.getTaskIndex());
                 break;
@@ -51,7 +54,7 @@ public class Tony {
                 ui.printUnknownCommandMessage();
                 break;
             }
-        } catch (NullPointerException | ArrayIndexOutOfBoundsException e) {
+        } catch (NullPointerException | IndexOutOfBoundsException e) {
             ui.printErrorMessage("No such task in the list");
         }
         return false;
@@ -60,7 +63,7 @@ public class Tony {
 
     public static void main(String[] args) {
         boolean isExit = false;
-        TaskManager taskManager = new TaskManager(MAX_TASKS);
+        TaskManager taskManager = new TaskManager();
         Scanner in = new Scanner(System.in);
         Ui ui = new Ui();
 

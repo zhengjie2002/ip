@@ -64,6 +64,18 @@ public class Parser {
         return new Command(type, taskIndex);
     }
 
+    private static Command parseDeleteCommand(String arguments) {
+        // Convert to a zero-based index in integer for us to use
+        int taskIndex;
+        try {
+            taskIndex = Integer.parseInt(arguments.trim()) - 1;
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException();
+        }
+        return new Command(CommandType.DELETE, taskIndex);
+    }
+
+
     public static Command parseCommand(String userInput) {
         String[] words = userInput.split(" ", 2);
         String commandWord = words[0];
@@ -84,9 +96,10 @@ public class Parser {
             return parseMarkUnmarkCommand(CommandType.MARK, arguments);
         case "unmark":
             return parseMarkUnmarkCommand(CommandType.UNMARK, arguments);
+        case "delete":
+            return parseDeleteCommand(arguments);
         default:
             return new Command(CommandType.UNKNOWN);
         }
-
     }
 }

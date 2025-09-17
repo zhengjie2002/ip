@@ -1,5 +1,6 @@
 package tony.ui;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import tony.task.Task;
@@ -17,7 +18,7 @@ public class Ui {
         System.out.println("____________________________________________________________");
     }
 
-    public void listAllTasks(Task[] tasks) {
+    public void listAllTasks(ArrayList<Task> tasks) {
         System.out.println("____________________________________________________________");
         System.out.println("Here are the Tasks in your list:");
         int index = 1;
@@ -52,6 +53,14 @@ public class Ui {
     public void printErrorMessage(String message) {
         System.out.println("____________________________________________________________");
         System.out.println("Error: " + message);
+        System.out.println("____________________________________________________________");
+    }
+
+    public void printDeleteAcknowledgement(Task removedTask, int newTaskCount) {
+        System.out.println("____________________________________________________________");
+        System.out.println("Noted. I've removed this task:");
+        System.out.println(" " + removedTask);
+        System.out.println("Now you have " + newTaskCount + " task(s) in the list.");
         System.out.println("____________________________________________________________");
     }
 }
