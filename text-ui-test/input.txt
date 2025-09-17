@@ -1,11 +1,18 @@
 list
 deadline BuyChickenRice /by Tomorrow
 todo get food
+delete 100
 list
 mark 2
 event project meeting /from Thurs 2pm /to Thurs 5pm
 list
+todo read book
+list
+delete 2
+list
 unmark 2
 mark 1
+event team meeting /from Mon 2pm /to Mon 4pm
+delete 3
 list
 bye

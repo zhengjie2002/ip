@@ -16,6 +16,9 @@ Got it. I've added this task:
 Now you have 2 task(s) in the list.
 ____________________________________________________________
 ____________________________________________________________
+Error: No such task in the list
+____________________________________________________________
+____________________________________________________________
 Here are the Tasks in your list:
 1.[D][ ] BuyChickenRice (by: Tomorrow)
 2.[T][ ] get food
@@ -36,18 +39,51 @@ Here are the Tasks in your list:
 3.[E][ ] project meeting (from: Thurs 2pm to: Thurs 5pm)
 ____________________________________________________________
 ____________________________________________________________
+Got it. I've added this task:
+[T][ ] read book
+Now you have 4 task(s) in the list.
+____________________________________________________________
+____________________________________________________________
+Here are the Tasks in your list:
+1.[D][ ] BuyChickenRice (by: Tomorrow)
+2.[T][X] get food
+3.[E][ ] project meeting (from: Thurs 2pm to: Thurs 5pm)
+4.[T][ ] read book
+____________________________________________________________
+____________________________________________________________
+Noted. I've removed this task:
+ [T][X] get food
+Now you have 3 task(s) in the list.
+____________________________________________________________
+____________________________________________________________
+Here are the Tasks in your list:
+1.[D][ ] BuyChickenRice (by: Tomorrow)
+2.[E][ ] project meeting (from: Thurs 2pm to: Thurs 5pm)
+3.[T][ ] read book
+____________________________________________________________
+____________________________________________________________
 OK, I've marked this task as not done yet:
-[ ] get food
+[ ] project meeting
 ____________________________________________________________
 ____________________________________________________________
 Nice! I've marked this task as done:
 [X] BuyChickenRice
 ____________________________________________________________
 ____________________________________________________________
+Got it. I've added this task:
+[E][ ] team meeting (from: Mon 2pm to: Mon 4pm)
+Now you have 4 task(s) in the list.
+____________________________________________________________
+____________________________________________________________
+Noted. I've removed this task:
+ [T][ ] read book
+Now you have 3 task(s) in the list.
+____________________________________________________________
+____________________________________________________________
 Here are the Tasks in your list:
 1.[D][X] BuyChickenRice (by: Tomorrow)
-2.[T][ ] get food
-3.[E][ ] project meeting (from: Thurs 2pm to: Thurs 5pm)
+2.[E][ ] project meeting (from: Thurs 2pm to: Thurs 5pm)
+3.[E][ ] team meeting (from: Mon 2pm to: Mon 4pm)
 ____________________________________________________________
 Bye. Hope to see you again soon!
 ____________________________________________________________
