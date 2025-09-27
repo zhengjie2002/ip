@@ -19,6 +19,9 @@ ____________________________________________________________
 Error: No such task in the list
 ____________________________________________________________
 ____________________________________________________________
+Error: The description of a task cannot be empty.
+____________________________________________________________
+____________________________________________________________
 Here are the Tasks in your list:
 1.[D][ ] BuyChickenRice (by: Tomorrow)
 2.[T][ ] get food
@@ -26,6 +29,9 @@ ____________________________________________________________
 ____________________________________________________________
 Nice! I've marked this task as done:
  [T][X] get food
+____________________________________________________________
+____________________________________________________________
+Error: The description of a task cannot be empty.
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this task:
@@ -56,6 +62,15 @@ Noted. I've removed this task:
 Now you have 3 task(s) in the list.
 ____________________________________________________________
 ____________________________________________________________
+Error: The end time of an event cannot be empty. Use the format: event <description> /from <start time> /to <end time>
+____________________________________________________________
+____________________________________________________________
+Error: The start time of an event cannot be empty. Use the format: event <description> /from <start time> /to <end time>
+____________________________________________________________
+____________________________________________________________
+Error: The description of a task cannot be empty.
+____________________________________________________________
+____________________________________________________________
 Here are the Tasks in your list:
 1.[D][ ] BuyChickenRice (by: Tomorrow)
 2.[E][ ] project meeting (from: Thurs 2pm to: Thurs 5pm)
@@ -70,6 +85,9 @@ Nice! I've marked this task as done:
  [D][X] BuyChickenRice (by: Tomorrow)
 ____________________________________________________________
 ____________________________________________________________
+Error: No such task in the list
+____________________________________________________________
+____________________________________________________________
 Got it. I've added this task:
 [E][ ] team meeting (from: Mon 2pm to: Mon 4pm)
 Now you have 4 task(s) in the list.
@@ -80,10 +98,14 @@ Noted. I've removed this task:
 Now you have 3 task(s) in the list.
 ____________________________________________________________
 ____________________________________________________________
+Nice! I've marked this task as done:
+ [E][X] team meeting (from: Mon 2pm to: Mon 4pm)
+____________________________________________________________
+____________________________________________________________
 Here are the Tasks in your list:
 1.[D][X] BuyChickenRice (by: Tomorrow)
 2.[E][ ] project meeting (from: Thurs 2pm to: Thurs 5pm)
-3.[E][ ] team meeting (from: Mon 2pm to: Mon 4pm)
+3.[E][X] team meeting (from: Mon 2pm to: Mon 4pm)
 ____________________________________________________________
 Bye. Hope to see you again soon!
 ____________________________________________________________
