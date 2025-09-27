@@ -16,14 +16,16 @@ public class TaskManager {
         taskCount++;
     }
 
-    public void markTaskDone(int index) {
+    public Task markTaskDone(int index) {
         Task task = tasks.get(index);
         task.markDone();
+        return task;
     }
 
-    public void markTaskUndone(int index) {
+    public Task markTaskUndone(int index) {
         Task task = tasks.get(index);
         task.unmarkDone();
+        return task;
     }
 
     public ArrayList<Task> getTasks() {

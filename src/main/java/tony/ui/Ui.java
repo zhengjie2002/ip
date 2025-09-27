@@ -23,9 +23,6 @@ public class Ui {
         System.out.println("Here are the Tasks in your list:");
         int index = 1;
         for (Task task : tasks) {
-            if (task == null) {
-                break;
-            }
             System.out.println(index + "." + task);
             index++;
         }
@@ -46,10 +43,6 @@ public class Ui {
         System.out.println("____________________________________________________________");
     }
 
-    public String readCommand(Scanner in) {
-        return in.nextLine();
-    }
-
     public void printErrorMessage(String message) {
         System.out.println("____________________________________________________________");
         System.out.println("Error: " + message);
@@ -63,4 +56,23 @@ public class Ui {
         System.out.println("Now you have " + newTaskCount + " task(s) in the list.");
         System.out.println("____________________________________________________________");
     }
+
+    public void printMarkAcknowledgement(Task task) {
+        System.out.println("____________________________________________________________");
+        System.out.println("Nice! I've marked this task as done:");
+        System.out.println(" " + task);
+        System.out.println("____________________________________________________________");
+    }
+
+    public void printUnmarkAcknowledgement(Task task) {
+        System.out.println("____________________________________________________________");
+        System.out.println("OK, I've marked this task as not done yet:");
+        System.out.println(" " + task);
+        System.out.println("____________________________________________________________");
+    }
+
+    public String readCommand(Scanner in) {
+        return in.nextLine();
+    }
+
 }
