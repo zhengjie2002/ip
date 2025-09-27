@@ -53,16 +53,19 @@ public class Tony {
                 break;
             case DELETE:
                 Task removedTask = taskManager.removeTask(command.getTaskIndex());
+                dataManager.updateFile(taskManager);
                 ui.printDeleteAcknowledgement(removedTask, taskManager.getTaskCount());
                 break;
             case MARK:
                 int taskToMarkAsDone = command.getTaskIndex();
                 Task taskMarkedAsDone = taskManager.markTaskDone(taskToMarkAsDone);
+                dataManager.updateFile(taskManager);
                 ui.printMarkAcknowledgement(taskMarkedAsDone);
                 break;
             case UNMARK:
                 int taskToMarkUndone = command.getTaskIndex();
                 Task taskUnmarked = taskManager.markTaskUndone(taskToMarkUndone);
+                dataManager.updateFile(taskManager);
                 ui.printUnmarkAcknowledgement(taskUnmarked);
                 break;
             default:

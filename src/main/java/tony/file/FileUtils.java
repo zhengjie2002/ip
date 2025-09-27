@@ -57,4 +57,9 @@ public class FileUtils {
         fw.write(System.lineSeparator());
         fw.close();
     }
+
+    public void clearFile() throws IOException {
+        FileWriter fw = new FileWriter(filePath, false);
+        fw.close();
+    }
 }

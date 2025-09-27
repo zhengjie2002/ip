@@ -104,4 +104,19 @@ public class DataManager {
             ui.printWritingToFileError(e.getMessage());
         }
     }
+
+    public void saveAllTasks(ArrayList<Task> tasks) {
+        for (Task task : tasks) {
+            saveTask(task);
+        }
+    }
+
+    public void updateFile(TaskManager taskManager) {
+        try {
+            fileUtils.clearFile();
+            saveAllTasks(taskManager.getTasks());
+        } catch (IOException e) {
+            ui.printWritingToFileError(e.getMessage());
+        }
+    }
 }
