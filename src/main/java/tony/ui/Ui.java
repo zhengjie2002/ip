@@ -71,6 +71,46 @@ public class Ui {
         System.out.println("____________________________________________________________");
     }
 
+    public void printMissingDescriptionError() {
+        System.out.println("____________________________________________________________");
+        System.out.println("Error: The description of a task cannot be empty.");
+        System.out.println("____________________________________________________________");
+    }
+
+    public void printMissingDeadlineError() {
+        System.out.println("____________________________________________________________");
+        System.out.println(
+                "Error: The deadline of a task cannot be empty. Use the format: deadline <description> /by <deadline>");
+        System.out.println("____________________________________________________________");
+    }
+
+    public void printMissingStartTimeError() {
+        System.out.println("____________________________________________________________");
+        System.out.println(
+                "Error: The start time of an event cannot be empty. Use the format: event <description> /from <start time> /to <end time>");
+        System.out.println("____________________________________________________________");
+    }
+
+    public void printMissingEndTimeError() {
+        System.out.println("____________________________________________________________");
+        System.out.println(
+                "Error: The end time of an event cannot be empty. Use the format: event <description> /from <start time> /to <end time>");
+        System.out.println("____________________________________________________________");
+    }
+
+    public void printInvalidTaskError() {
+        System.out.println("____________________________________________________________");
+        System.out.println(
+                "Error: Please provide a valid task number. Use the format: mark <task number> or unmark <task number> or delete <task number>");
+        System.out.println("____________________________________________________________");
+    }
+
+    public void printTaskNotFoundError() {
+        System.out.println("____________________________________________________________");
+        System.out.println("Error: No such task in the list.");
+        System.out.println("____________________________________________________________");
+    }
+
     public String readCommand(Scanner in) {
         return in.nextLine();
     }

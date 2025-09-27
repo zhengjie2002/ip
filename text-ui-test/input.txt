@@ -16,6 +16,7 @@ event do homework /to Friday
 event /from Friday /to Friday
 list
 unmark 2
+delete
 mark 1
 unmark 100
 event team meeting /from Mon 2pm /to Mon 4pm

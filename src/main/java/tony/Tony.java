@@ -22,7 +22,8 @@ public class Tony {
 
     private static final String FILE_PATH = "./data/tony.txt";
 
-    private static boolean executeCommand(Command command, TaskManager taskManager, Ui ui, FileUtils fileUtils, TaskSerializer taskSerializer) {
+    private static boolean executeCommand(Command command, TaskManager taskManager, Ui ui, FileUtils fileUtils,
+                                          TaskSerializer taskSerializer) {
         try {
             switch (command.getType()) {
             case EXIT:
@@ -79,7 +80,7 @@ public class Tony {
                 break;
             }
         } catch (NullPointerException | IndexOutOfBoundsException e) {
-            ui.printErrorMessage("No such task in the list");
+            ui.printTaskNotFoundError();
         }
         return false;
     }
@@ -107,19 +108,19 @@ public class Tony {
             try {
                 command = Parser.parseCommand(userInput);
             } catch (NoDescriptionException e) {
-                ui.printErrorMessage("The description of a task cannot be empty.");
+                ui.printMissingDescriptionError();
                 continue;
             } catch (NoDeadlineException e) {
-                ui.printErrorMessage("The deadline of a task cannot be empty. Use the format: deadline <description> /by <deadline>");
+                ui.printMissingDeadlineError();
                 continue;
             } catch (NoEventStartException e) {
-                ui.printErrorMessage("The start time of an event cannot be empty. Use the format: event <description> /from <start time> /to <end time>");
+                ui.printMissingStartTimeError();
                 continue;
             } catch (NoEventEndException e) {
-                ui.printErrorMessage("The end time of an event cannot be empty. Use the format: event <description> /from <start time> /to <end time>");
+                ui.printMissingEndTimeError();
                 continue;
             } catch (NumberFormatException e) {
-                ui.printErrorMessage("Please provide a valid task number. Use the format: mark <task number> or unmark <task number>");
+                ui.printInvalidTaskError();
                 continue;
             }
             isExit = executeCommand(command, taskManager, ui, fileUtils, taskSerializer);
