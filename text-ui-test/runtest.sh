@@ -12,6 +12,12 @@ then
     rm ACTUAL.TXT
 fi
 
+# delete previous storage file
+if [ -e "./data/tony.TXT" ]
+then
+    rm ./data/tony.TXT
+fi
+
 # compile the code into the bin folder, terminates if error occurred
 if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/tony/*.java
 then
