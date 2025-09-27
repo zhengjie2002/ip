@@ -43,6 +43,11 @@ public class Command {
         this.isDone = isDone;
     }
 
+    public Command(CommandType type, String keyword) {
+        this.type = type;
+        this.description = keyword;
+    }
+
     public boolean isDone() {
         return isDone;
     }

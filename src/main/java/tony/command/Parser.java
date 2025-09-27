@@ -4,6 +4,7 @@ import tony.exceptions.NoDeadlineException;
 import tony.exceptions.NoDescriptionException;
 import tony.exceptions.NoEventStartException;
 import tony.exceptions.NoEventEndException;
+import tony.exceptions.NoSearchKeywordException;
 
 public class Parser {
     private static Command parseEventCommand(String arguments) {
@@ -78,6 +79,13 @@ public class Parser {
         return new Command(CommandType.DELETE, taskIndex);
     }
 
+    private static Command parseFindCommand(String arguments) {
+        if (arguments.isEmpty()) {
+            throw new NoSearchKeywordException();
+        }
+        return new Command(CommandType.FIND, arguments);
+    }
+
     public static Command parseCommand(String userInput) {
         String[] words = userInput.split(" ", 2);
         String commandWord = words[0];
@@ -100,6 +108,8 @@ public class Parser {
             return parseMarkUnmarkCommand(CommandType.UNMARK, arguments);
         case "delete":
             return parseDeleteCommand(arguments);
+        case  "find":
+            return parseFindCommand(arguments.trim());
         default:
             return new Command(CommandType.UNKNOWN);
         }

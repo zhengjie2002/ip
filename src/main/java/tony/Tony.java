@@ -8,6 +8,7 @@ import tony.exceptions.NoDescriptionException;
 import tony.exceptions.NoEventStartException;
 import tony.exceptions.NoEventEndException;
 
+import tony.exceptions.NoSearchKeywordException;
 import tony.task.Deadline;
 import tony.task.Event;
 import tony.task.Task;
@@ -18,6 +19,7 @@ import tony.ui.Ui;
 
 import tony.file.DataManager;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -68,6 +70,11 @@ public class Tony {
                 dataManager.updateFile(taskManager);
                 ui.printUnmarkAcknowledgement(taskUnmarked);
                 break;
+            case FIND:
+                String keyword = command.getDescription();
+                ArrayList<Task> matchingTasks = taskManager.findTasks(keyword);
+                ui.listMatchingTasks(matchingTasks);
+                break;
             default:
                 ui.printUnknownCommandMessage();
                 break;
@@ -109,6 +116,9 @@ public class Tony {
                 continue;
             } catch (NumberFormatException e) {
                 ui.printInvalidTaskError();
+                continue;
+            } catch (NoSearchKeywordException e) {
+                ui.printMissingSearchKeywordError();
                 continue;
             }
             isExit = executeCommand(command, taskManager, ui, dataManager);

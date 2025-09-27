@@ -29,6 +29,21 @@ public class Ui {
         System.out.println("____________________________________________________________");
     }
 
+    public void listMatchingTasks(ArrayList<Task> tasks) {
+        System.out.println("____________________________________________________________");
+        if (tasks.isEmpty()) {
+            System.out.println("No matching tasks found.");
+        } else {
+            System.out.println("Here are the matching tasks in your list:");
+            int index = 1;
+            for (Task task : tasks) {
+                System.out.println(index + "." + task);
+                index++;
+            }
+        }
+        System.out.println("____________________________________________________________");
+    }
+
     public void printTaskAddedMessage(Task newTask, int index) {
         System.out.println("____________________________________________________________");
         System.out.println("Got it. I've added this task:");
@@ -40,12 +55,6 @@ public class Ui {
     public void printUnknownCommandMessage() {
         System.out.println("____________________________________________________________");
         System.out.println("Sorry, I don't understand that command.");
-        System.out.println("____________________________________________________________");
-    }
-
-    public void printErrorMessage(String message) {
-        System.out.println("____________________________________________________________");
-        System.out.println("Error: " + message);
         System.out.println("____________________________________________________________");
     }
 
@@ -132,6 +141,12 @@ public class Ui {
     public void printWritingToFileError(String message) {
         System.out.println("____________________________________________________________");
         System.out.println("Error writing to file: " + message);
+        System.out.println("____________________________________________________________");
+    }
+
+    public void printMissingSearchKeywordError() {
+        System.out.println("____________________________________________________________");
+        System.out.println("Error: The search keyword cannot be empty. Use the format: find <keyword>");
         System.out.println("____________________________________________________________");
     }
 
