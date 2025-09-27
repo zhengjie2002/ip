@@ -42,6 +42,8 @@ public class FileUtils {
                 newEventTask.markDone();
             }
             break;
+        default:
+            break;
         }
     }
 
@@ -49,11 +51,18 @@ public class FileUtils {
         File f = new File(filePath);
         FileParser fileParser = new FileParser();
 
+        // Create a file and the directory if it doesnt exist
         if (!f.exists()) {
-            f.getParentFile().mkdirs();
+            File parentDir = f.getParentFile();
+            if (parentDir != null && !parentDir.exists()) {
+                if (!parentDir.mkdirs()) {
+                    throw new IOException("Failed to create directory: " + parentDir.getAbsolutePath());
+                }
+            }
             f.createNewFile();
             return;
         }
+
         Scanner s = new Scanner(f);
         while (s.hasNext()) {
             String line = s.nextLine();
