@@ -111,13 +111,13 @@ public class Ui {
         System.out.println("____________________________________________________________");
     }
 
-    public void printErrorReadingFile(String message) {
+    public void printReadFileError(String message) {
         System.out.println("____________________________________________________________");
         System.out.println("Error reading file: " + message);
         System.out.println("____________________________________________________________");
     }
 
-    public void printErrorCreatingFile(String message) {
+    public void printCreateFileError(String message) {
         System.out.println("____________________________________________________________");
         System.out.println("Error creating file: " + message);
         System.out.println("____________________________________________________________");
@@ -126,6 +126,12 @@ public class Ui {
     public void printFileCorruptedError() {
         System.out.println("____________________________________________________________");
         System.out.println("Error: File data is corrupted.");
+        System.out.println("____________________________________________________________");
+    }
+
+    public void printWritingToFileError(String message) {
+        System.out.println("____________________________________________________________");
+        System.out.println("Error writing to file: " + message);
         System.out.println("____________________________________________________________");
     }
 

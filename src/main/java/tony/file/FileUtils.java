@@ -1,11 +1,11 @@
 package tony.file;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.util.ArrayList;
-import java.io.FileWriter;
-import java.io.IOException;
 
 import tony.ui.Ui;
 
@@ -28,7 +28,7 @@ public class FileUtils {
             }
             file.createNewFile();
         } catch (IOException e) {
-            ui.printErrorCreatingFile(e.getMessage());
+            ui.printCreateFileError(e.getMessage());
         }
     }
 
@@ -46,7 +46,7 @@ public class FileUtils {
         try {
             return (ArrayList<String>) Files.readAllLines(file.toPath(), Charset.defaultCharset());
         } catch (IOException e) {
-            ui.printErrorReadingFile(e.getMessage());
+            ui.printReadFileError(e.getMessage());
             return new ArrayList<>();
         }
     }

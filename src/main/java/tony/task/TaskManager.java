@@ -3,7 +3,7 @@ package tony.task;
 import java.util.ArrayList;
 
 public class TaskManager {
-    ArrayList<Task> tasks;
+    private ArrayList<Task> tasks;
     private int taskCount;
 
     public TaskManager() {

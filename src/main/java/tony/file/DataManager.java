@@ -36,7 +36,7 @@ public class DataManager {
         try {
             parseFile(dataStrings, taskManager);
         } catch (Exception e) {
-            ui.printErrorMessage("Data file is corrupted. Starting with an empty task list.");
+            ui.printFileCorruptedError();
             taskManager.clearTasks();
         }
     }
@@ -101,8 +101,7 @@ public class DataManager {
             String taskText = taskSerializer.serializeTask(newTask);
             fileUtils.appendToFile(taskText);
         } catch (IOException e) {
-            ui.printErrorMessage("Error writing to file: " + e.getMessage());
+            ui.printWritingToFileError(e.getMessage());
         }
     }
-
 }
