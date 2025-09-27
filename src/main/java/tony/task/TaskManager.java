@@ -42,4 +42,9 @@ public class TaskManager {
         taskCount--;
         return taskToRemove;
     }
+
+    public void clearTasks() {
+        tasks.clear();
+        taskCount = 0;
+    }
 }

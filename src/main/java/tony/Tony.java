@@ -2,28 +2,30 @@ package tony;
 
 import tony.command.Command;
 import tony.command.Parser;
+
 import tony.exceptions.NoDeadlineException;
 import tony.exceptions.NoDescriptionException;
+import tony.exceptions.NoEventStartException;
+import tony.exceptions.NoEventEndException;
+
 import tony.task.Deadline;
 import tony.task.Event;
 import tony.task.Task;
 import tony.task.TaskManager;
 import tony.task.Todo;
-import tony.ui.Ui;
-import tony.exceptions.NoEventStartException;
-import tony.exceptions.NoEventEndException;
-import tony.file.FileUtils;
-import tony.task.TaskSerializer;
 
-import java.io.IOException;
+import tony.ui.Ui;
+
+import tony.file.DataManager;
+
 import java.util.Scanner;
+
 
 public class Tony {
 
     private static final String FILE_PATH = "./data/tony.txt";
 
-    private static boolean executeCommand(Command command, TaskManager taskManager, Ui ui, FileUtils fileUtils,
-                                          TaskSerializer taskSerializer) {
+    private static boolean executeCommand(Command command, TaskManager taskManager, Ui ui, DataManager dataManager) {
         try {
             switch (command.getType()) {
             case EXIT:
@@ -34,31 +36,19 @@ public class Tony {
             case ADD_TODO:
                 Task newTask = new Todo(command.getDescription());
                 taskManager.addTask(newTask);
-                try {
-                    fileUtils.appendToFile(taskSerializer.serializeTask(newTask));
-                } catch (IOException e) {
-                    ui.printErrorMessage("Error writing to file: " + e.getMessage());
-                }
+                dataManager.saveTask(newTask);
                 ui.printTaskAddedMessage(newTask, taskManager.getTaskCount());
                 break;
             case ADD_DEADLINE:
                 Task newDeadlineTask = new Deadline(command.getDescription(), command.getBy());
                 taskManager.addTask(newDeadlineTask);
-                try {
-                    fileUtils.appendToFile(taskSerializer.serializeTask(newDeadlineTask));
-                } catch (IOException e) {
-                    ui.printErrorMessage("Error writing to file: " + e.getMessage());
-                }
+                dataManager.saveTask(newDeadlineTask);
                 ui.printTaskAddedMessage(newDeadlineTask, taskManager.getTaskCount());
                 break;
             case ADD_EVENT:
                 Task newEventTask = new Event(command.getDescription(), command.getFrom(), command.getTo());
                 taskManager.addTask(newEventTask);
-                try {
-                    fileUtils.appendToFile(taskSerializer.serializeTask(newEventTask));
-                } catch (IOException e) {
-                    ui.printErrorMessage("Error writing to file: " + e.getMessage());
-                }
+                dataManager.saveTask(newEventTask);
                 ui.printTaskAddedMessage(newEventTask, taskManager.getTaskCount());
                 break;
             case DELETE:
@@ -91,14 +81,9 @@ public class Tony {
         TaskManager taskManager = new TaskManager();
         Scanner in = new Scanner(System.in);
         Ui ui = new Ui();
-        FileUtils fileUtils = new FileUtils(FILE_PATH);
-        TaskSerializer taskSerializer = new TaskSerializer();
+        DataManager dataManager = new DataManager(FILE_PATH);
 
-        try {
-            fileUtils.loadFileContent(taskManager);
-        } catch (Exception e) {
-            ui.printErrorMessage("Error loading file: " + e.getMessage());
-        }
+        dataManager.loadData(taskManager);
 
         ui.printWelcome();
 
@@ -123,7 +108,7 @@ public class Tony {
                 ui.printInvalidTaskError();
                 continue;
             }
-            isExit = executeCommand(command, taskManager, ui, fileUtils, taskSerializer);
+            isExit = executeCommand(command, taskManager, ui, dataManager);
         }
         ui.printGoodbye();
     }

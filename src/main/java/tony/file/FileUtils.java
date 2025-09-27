@@ -1,75 +1,54 @@
 package tony.file;
 
 import java.io.File;
-import java.util.Scanner;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.util.ArrayList;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import tony.task.Deadline;
-import tony.task.Event;
-import tony.task.Task;
-import tony.task.TaskManager;
-import tony.command.Command;
-import tony.task.Todo;
+import tony.ui.Ui;
 
 public class FileUtils {
     private String filePath;
+    private File file;
+    private final Ui ui = new Ui();
 
     public FileUtils(String filePath) {
         this.filePath = filePath;
     }
 
-    private static void addTask(Command command, TaskManager taskManager) {
-        switch (command.getType()) {
-        case ADD_TODO:
-            Task newTask = new Todo(command.getDescription());
-            taskManager.addTask(newTask);
-            if (command.isDone()) {
-                newTask.markDone();
+    private void createFile() {
+        try {
+            if (file.exists()) {
+                return;
             }
-            break;
-        case ADD_DEADLINE:
-            Task newDeadlineTask = new Deadline(command.getDescription(), command.getBy());
-            taskManager.addTask(newDeadlineTask);
-            if (command.isDone()) {
-                newDeadlineTask.markDone();
+            if (!file.getParentFile().exists()) {
+                file.getParentFile().mkdirs();
             }
-            break;
-        case ADD_EVENT:
-            Task newEventTask = new Event(command.getDescription(), command.getFrom(), command.getTo());
-            taskManager.addTask(newEventTask);
-            if (command.isDone()) {
-                newEventTask.markDone();
-            }
-            break;
-        default:
-            break;
+            file.createNewFile();
+        } catch (IOException e) {
+            ui.printErrorCreatingFile(e.getMessage());
         }
     }
 
-    public void loadFileContent(TaskManager taskManager) throws IOException {
-        File f = new File(filePath);
-        FileParser fileParser = new FileParser();
-
-        // Create a file and the directory if it doesnt exist
-        if (!f.exists()) {
-            File parentDir = f.getParentFile();
-            if (parentDir != null && !parentDir.exists()) {
-                if (!parentDir.mkdirs()) {
-                    throw new IOException("Failed to create directory: " + parentDir.getAbsolutePath());
-                }
-            }
-            f.createNewFile();
-            return;
+    public void loadFile() {
+        file = new File(filePath);
+        if (!file.exists()) {
+            createFile();
         }
+    }
 
-        Scanner s = new Scanner(f);
-        while (s.hasNext()) {
-            String line = s.nextLine();
-            Command command = fileParser.parseFile(line);
-            addTask(command, taskManager);
+    public ArrayList<String> readFile() {
+        if (!file.exists()) {
+            return new ArrayList<>();
         }
-        s.close();
+        try {
+            return (ArrayList<String>) Files.readAllLines(file.toPath(), Charset.defaultCharset());
+        } catch (IOException e) {
+            ui.printErrorReadingFile(e.getMessage());
+            return new ArrayList<>();
+        }
     }
 
     public void appendToFile(String textToAdd) throws IOException {

@@ -15,15 +15,18 @@ public class Parser {
         if (indexOfTo == -1) {
             throw new NoEventEndException();
         }
+
         String description = arguments.substring(0, indexOfFrom).trim();
-        String from = arguments.substring(indexOfFrom + 5, indexOfTo).trim();
-        String to = arguments.substring(indexOfTo + 3).trim();
         if (description.isEmpty()) {
             throw new NoDescriptionException();
         }
+
+        String from = arguments.substring(indexOfFrom + 5, indexOfTo).trim();
         if (from.isEmpty()) {
             throw new NoEventStartException();
         }
+
+        String to = arguments.substring(indexOfTo + 3).trim();
         if (to.isEmpty()) {
             throw new NoEventEndException();
         }

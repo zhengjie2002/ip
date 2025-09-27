@@ -111,6 +111,24 @@ public class Ui {
         System.out.println("____________________________________________________________");
     }
 
+    public void printErrorReadingFile(String message) {
+        System.out.println("____________________________________________________________");
+        System.out.println("Error reading file: " + message);
+        System.out.println("____________________________________________________________");
+    }
+
+    public void printErrorCreatingFile(String message) {
+        System.out.println("____________________________________________________________");
+        System.out.println("Error creating file: " + message);
+        System.out.println("____________________________________________________________");
+    }
+
+    public void printFileCorruptedError() {
+        System.out.println("____________________________________________________________");
+        System.out.println("Error: File data is corrupted.");
+        System.out.println("____________________________________________________________");
+    }
+
     public String readCommand(Scanner in) {
         return in.nextLine();
     }
