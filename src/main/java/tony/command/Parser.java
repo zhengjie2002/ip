@@ -31,7 +31,7 @@ public class Parser {
         if (to.isEmpty()) {
             throw new NoEventEndException();
         }
-        return new Command(CommandType.ADD_EVENT, description, from, to, false);
+        return new AddEventCommand(description, from, to, false);
     }
 
     private static Command parseDeadlineCommand(String arguments) {
@@ -47,17 +47,17 @@ public class Parser {
         if (description.isEmpty()) {
             throw new NoDescriptionException();
         }
-        return new Command(CommandType.ADD_DEADLINE, description, by, false);
+        return new AddDeadlineCommand(description, by, false);
     }
 
     private static Command parseTodoCommand(String arguments) {
         if (arguments.isEmpty()) {
             throw new NoDescriptionException();
         }
-        return new Command(CommandType.ADD_TODO, arguments, false);
+        return new AddToDoCommand(arguments, false);
     }
 
-    private static Command parseMarkUnmarkCommand(CommandType type, String arguments) {
+    private static Command parseUnmarkCommand(String arguments) {
         // Convert to a zero-based index in integer for us to use
         int taskIndex;
         try {
@@ -65,8 +65,20 @@ public class Parser {
         } catch (NumberFormatException e) {
             throw new NumberFormatException();
         }
-        return new Command(type, taskIndex);
+        return new UnmarkCommand(taskIndex);
     }
+
+    private static Command parseMarkCommand(String arguments) {
+        // Convert to a zero-based index in integer for us to use
+        int taskIndex;
+        try {
+            taskIndex = Integer.parseInt(arguments.trim()) - 1;
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException();
+        }
+        return new MarkCommand(taskIndex);
+    }
+
 
     private static Command parseDeleteCommand(String arguments) {
         // Convert to a zero-based index in integer for us to use
@@ -76,14 +88,14 @@ public class Parser {
         } catch (NumberFormatException e) {
             throw new NumberFormatException();
         }
-        return new Command(CommandType.DELETE, taskIndex);
+        return new DeleteCommand(taskIndex);
     }
 
     private static Command parseFindCommand(String arguments) {
         if (arguments.isEmpty()) {
             throw new NoSearchKeywordException();
         }
-        return new Command(CommandType.FIND, arguments);
+        return new FindCommand(arguments);
     }
 
     public static Command parseCommand(String userInput) {
@@ -93,9 +105,9 @@ public class Parser {
 
         switch (commandWord) {
         case "bye":
-            return new Command(CommandType.EXIT);
+            return new ExitCommand();
         case "list":
-            return new Command(CommandType.LIST);
+            return new ListCommand();
         case "todo":
             return parseTodoCommand(arguments.trim());
         case "deadline":
@@ -103,15 +115,15 @@ public class Parser {
         case "event":
             return parseEventCommand(arguments.trim());
         case "mark":
-            return parseMarkUnmarkCommand(CommandType.MARK, arguments);
+            return parseMarkCommand(arguments);
         case "unmark":
-            return parseMarkUnmarkCommand(CommandType.UNMARK, arguments);
+            return parseUnmarkCommand(arguments);
         case "delete":
             return parseDeleteCommand(arguments);
-        case  "find":
+        case "find":
             return parseFindCommand(arguments.trim());
         default:
-            return new Command(CommandType.UNKNOWN);
+            return new UnknownCommand();
         }
     }
 }

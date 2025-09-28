@@ -1,21 +1,19 @@
 package tony.file;
 
-import tony.command.Command;
-import tony.command.CommandType;
+import tony.command.AddCommand;
+import tony.command.AddDeadlineCommand;
+import tony.command.AddEventCommand;
+import tony.command.AddToDoCommand;
 
 import tony.exceptions.FileDataCorruptedException;
 
-import tony.task.Deadline;
-import tony.task.Event;
 import tony.task.Task;
 import tony.task.TaskManager;
 import tony.task.TaskSerializer;
-import tony.task.Todo;
 import tony.ui.Ui;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 
 public class DataManager {
 
@@ -49,50 +47,22 @@ public class DataManager {
             String[] words = line.split(DELIMITER);
             String commandWord = words[0];
             boolean isDone = words[1].equals("1");
-            Command newCommand;
+            AddCommand addFromFileCommand;
 
             switch (commandWord) {
             case "todo":
-                newCommand = new Command(CommandType.ADD_TODO, words[2], isDone);
+                addFromFileCommand = new AddToDoCommand(words[2], isDone);
                 break;
             case "deadline":
-                newCommand = new Command(CommandType.ADD_DEADLINE, words[2], words[3], isDone);
+                addFromFileCommand = new AddDeadlineCommand(words[2], words[3], isDone);
                 break;
             case "event":
-                newCommand = new Command(CommandType.ADD_EVENT, words[2], words[3], words[4], isDone);
+                addFromFileCommand = new AddEventCommand(words[2], words[3], words[4], isDone);
                 break;
             default:
                 throw new FileDataCorruptedException();
             }
-            addTask(newCommand, taskManager);
-        }
-    }
-
-    private void addTask(Command command, TaskManager taskManager) {
-        switch (command.getType()) {
-        case ADD_TODO:
-            Task newTask = new Todo(command.getDescription());
-            taskManager.addTask(newTask);
-            if (command.isDone()) {
-                newTask.markDone();
-            }
-            break;
-        case ADD_DEADLINE:
-            Task newDeadlineTask = new Deadline(command.getDescription(), command.getBy());
-            taskManager.addTask(newDeadlineTask);
-            if (command.isDone()) {
-                newDeadlineTask.markDone();
-            }
-            break;
-        case ADD_EVENT:
-            Task newEventTask = new Event(command.getDescription(), command.getFrom(), command.getTo());
-            taskManager.addTask(newEventTask);
-            if (command.isDone()) {
-                newEventTask.markDone();
-            }
-            break;
-        default:
-            break;
+            addFromFileCommand.executeFromFile(taskManager);
         }
     }
 
