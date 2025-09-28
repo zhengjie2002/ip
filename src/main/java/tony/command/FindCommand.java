@@ -14,6 +14,16 @@ public class FindCommand extends Command {
         this.keyword = keyword;
     }
 
+    /**
+     * Executes the find command.
+     * Searches for tasks containing the specified keyword, retrieves the matching tasks,
+     * and displays them using the UI. If no tasks are found or an error occurs,
+     * appropriate error messages are displayed.
+     *
+     * @param taskManager The TaskManager containing the tasks.
+     * @param ui          The user interface for displaying messages.
+     * @param dataManager The DataManager (not used in this command).
+     */
     @Override
     public void execute(TaskManager taskManager, Ui ui, DataManager dataManager) {
         try {

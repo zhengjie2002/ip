@@ -10,6 +10,16 @@ public class DeleteCommand extends ModificationCommand {
         super(taskIndex);
     }
 
+    /**
+     * Executes the delete command.
+     * Removes the specified task from the task manager, updates the data file,
+     * and displays an acknowledgment message. If the task is not found,
+     * an appropriate error message is displayed.
+     *
+     * @param taskManager The TaskManager containing the tasks.
+     * @param ui          The user interface for displaying messages.
+     * @param dataManager The DataManager for updating the task data file.
+     */
     @Override
     public void execute(TaskManager taskManager, Ui ui, DataManager dataManager) {
         try {
