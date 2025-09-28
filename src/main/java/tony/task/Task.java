@@ -1,5 +1,9 @@
 package tony.task;
 
+/**
+ * Represents an abstract task.
+ * A <code>Task</code> object contains a description and a completion status.
+ */
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -17,6 +21,12 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    /**
+     * Returns the string representation of the task.
+     * This method must be implemented by subclasses.
+     *
+     * @return A string representation of the task.
+     */
     @Override
     public abstract String toString();
 
