@@ -1,19 +1,23 @@
 package tony.task;
 
-public class Deadline extends Task {
-    protected String doBy;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-    public Deadline(String description, String doBy) {
+public class Deadline extends Task {
+    protected LocalDate deadlineDate;
+
+    public Deadline(String description, LocalDate deadlineDate) {
         super(description);
-        this.doBy = doBy;
+        this.deadlineDate = deadlineDate;
     }
 
-    public String getDoBy() {
-        return doBy;
+    public LocalDate getDeadlineDate() {
+        return deadlineDate;
     }
 
     @Override
     public String toString() {
-        return ("[D]" + (isDone ? "[X] " : "[ ] ") + description + " (by: " + doBy + ")");
+        return ("[D]" + (isDone ? "[X] " : "[ ] ") + description + " (by: " +
+                deadlineDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")");
     }
 }

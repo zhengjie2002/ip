@@ -13,11 +13,15 @@ import tony.task.TaskSerializer;
 import tony.ui.Ui;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class DataManager {
 
     private static final String DELIMITER = "\\|";
+    private static final String DATETIME_FORMAT = "yyyy-MM-dd";
     private final String filePath;
     private FileUtils fileUtils;
     private final TaskSerializer taskSerializer = new TaskSerializer();
@@ -54,7 +58,14 @@ public class DataManager {
                 addFromFileCommand = new AddToDoCommand(words[2], isDone);
                 break;
             case "deadline":
-                addFromFileCommand = new AddDeadlineCommand(words[2], words[3], isDone);
+                LocalDate deadlineDate = null;
+                try {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATETIME_FORMAT);
+                    deadlineDate = LocalDate.parse(words[3], formatter);
+                } catch (DateTimeParseException e) {
+                    throw new FileDataCorruptedException();
+                }
+                addFromFileCommand = new AddDeadlineCommand(words[2], deadlineDate, isDone);
                 break;
             case "event":
                 addFromFileCommand = new AddEventCommand(words[2], words[3], words[4], isDone);

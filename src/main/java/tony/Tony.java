@@ -4,6 +4,7 @@ import tony.command.Command;
 import tony.command.ExitCommand;
 import tony.command.Parser;
 
+import tony.exceptions.InvalidDateFormatException;
 import tony.exceptions.NoDeadlineException;
 import tony.exceptions.NoDescriptionException;
 import tony.exceptions.NoEventStartException;
@@ -53,6 +54,12 @@ public class Tony {
                 continue;
             } catch (NoSearchKeywordException e) {
                 ui.printMissingSearchKeywordError();
+                continue;
+            } catch (InvalidDateFormatException e) {
+                ui.printInvalidDateFormatError();
+                continue;
+            } catch (Exception e) {
+                ui.printError(e.getMessage());
                 continue;
             }
             if (command instanceof ExitCommand) {

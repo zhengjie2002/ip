@@ -1,8 +1,8 @@
 list
-deadline BuyChickenRice /by Tomorrow
+deadline BuyChickenRice /by 04-03-2026
 todo get food
 delete 100
-deadline /by Tomorrow
+deadline /by 03-04-2025
 list
 mark 2
 todo
@@ -23,4 +23,5 @@ event team meeting /from Mon 2pm /to Mon 4pm
 delete 3
 mark 3
 list
+deadline Submit report /by Tomorrow
 bye

@@ -7,7 +7,7 @@ Here are the Tasks in your list:
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this task:
-[D][ ] BuyChickenRice (by: Tomorrow)
+[D][ ] BuyChickenRice (by: Mar 4 2026)
 Now you have 1 task(s) in the list.
 ____________________________________________________________
 ____________________________________________________________
@@ -23,7 +23,7 @@ Error: The description of a task cannot be empty.
 ____________________________________________________________
 ____________________________________________________________
 Here are the Tasks in your list:
-1.[D][ ] BuyChickenRice (by: Tomorrow)
+1.[D][ ] BuyChickenRice (by: Mar 4 2026)
 2.[T][ ] get food
 ____________________________________________________________
 ____________________________________________________________
@@ -40,7 +40,7 @@ Now you have 3 task(s) in the list.
 ____________________________________________________________
 ____________________________________________________________
 Here are the Tasks in your list:
-1.[D][ ] BuyChickenRice (by: Tomorrow)
+1.[D][ ] BuyChickenRice (by: Mar 4 2026)
 2.[T][X] get food
 3.[E][ ] project meeting (from: Thurs 2pm to: Thurs 5pm)
 ____________________________________________________________
@@ -51,7 +51,7 @@ Now you have 4 task(s) in the list.
 ____________________________________________________________
 ____________________________________________________________
 Here are the Tasks in your list:
-1.[D][ ] BuyChickenRice (by: Tomorrow)
+1.[D][ ] BuyChickenRice (by: Mar 4 2026)
 2.[T][X] get food
 3.[E][ ] project meeting (from: Thurs 2pm to: Thurs 5pm)
 4.[T][ ] read book
@@ -72,7 +72,7 @@ Error: The description of a task cannot be empty.
 ____________________________________________________________
 ____________________________________________________________
 Here are the Tasks in your list:
-1.[D][ ] BuyChickenRice (by: Tomorrow)
+1.[D][ ] BuyChickenRice (by: Mar 4 2026)
 2.[E][ ] project meeting (from: Thurs 2pm to: Thurs 5pm)
 3.[T][ ] read book
 ____________________________________________________________
@@ -85,7 +85,7 @@ Error: Please provide a valid task number. Use the format: mark <task number> or
 ____________________________________________________________
 ____________________________________________________________
 Nice! I've marked this task as done:
- [D][X] BuyChickenRice (by: Tomorrow)
+ [D][X] BuyChickenRice (by: Mar 4 2026)
 ____________________________________________________________
 ____________________________________________________________
 Error: No such task in the list.
@@ -106,9 +106,12 @@ Nice! I've marked this task as done:
 ____________________________________________________________
 ____________________________________________________________
 Here are the Tasks in your list:
-1.[D][X] BuyChickenRice (by: Tomorrow)
+1.[D][X] BuyChickenRice (by: Mar 4 2026)
 2.[E][ ] project meeting (from: Thurs 2pm to: Thurs 5pm)
 3.[E][X] team meeting (from: Mon 2pm to: Mon 4pm)
+____________________________________________________________
+____________________________________________________________
+Error: The date format is invalid. Please use the format DD-MM-YYYY.
 ____________________________________________________________
 Bye. Hope to see you again soon!
 ____________________________________________________________

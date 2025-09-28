@@ -150,6 +150,18 @@ public class Ui {
         System.out.println("____________________________________________________________");
     }
 
+    public void printInvalidDateFormatError() {
+        System.out.println("____________________________________________________________");
+        System.out.println("Error: The date format is invalid. Please use the format DD-MM-YYYY.");
+        System.out.println("____________________________________________________________");
+    }
+
+    public void printError(String message) {
+        System.out.println("____________________________________________________________");
+        System.out.println("Error: " + message);
+        System.out.println("____________________________________________________________");
+    }
+
     public String readCommand(Scanner in) {
         return in.nextLine();
     }

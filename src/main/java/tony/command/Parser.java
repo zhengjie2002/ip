@@ -1,5 +1,10 @@
 package tony.command;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+import tony.exceptions.InvalidDateFormatException;
 import tony.exceptions.NoDeadlineException;
 import tony.exceptions.NoDescriptionException;
 import tony.exceptions.NoEventStartException;
@@ -39,15 +44,27 @@ public class Parser {
         if (indexOfBy == -1) {
             throw new NoDeadlineException();
         }
+
         String description = arguments.substring(0, indexOfBy).trim();
+        if (description.isEmpty()) {
+            throw new NoDescriptionException();
+        }
+
         String by = arguments.substring(indexOfBy + 3).trim();
         if (by.isEmpty()) {
             throw new NoDeadlineException();
         }
-        if (description.isEmpty()) {
-            throw new NoDescriptionException();
+
+        // Convert "by" from DD-MM-YYYY to LocalDate
+        LocalDate deadlineDate = null;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            deadlineDate = LocalDate.parse(by, formatter);
+        } catch (DateTimeParseException e) {
+            throw new InvalidDateFormatException();
         }
-        return new AddDeadlineCommand(description, by, false);
+
+        return new AddDeadlineCommand(description, deadlineDate, false);
     }
 
     private static Command parseTodoCommand(String arguments) {
