@@ -18,19 +18,40 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+/**
+ * Manages the loading, saving, and updating of task data to and from a file.
+ * The <code>DataManager</code> class handles file operations, including parsing
+ * task data from a file and serializing tasks for storage.
+ */
 public class DataManager {
 
+    /** The delimiter used to split task data in the file. */
     private static final String DELIMITER = "\\|";
+
+    /** The date format used for parsing and formatting task dates. */
     private static final String DATETIME_FORMAT = "yyyy-MM-dd";
+
+    /** The file path where task data is stored. */
     private final String filePath;
+
     private FileUtils fileUtils;
+
+    /** Serializer for converting tasks to string representations. */
     private final TaskSerializer taskSerializer = new TaskSerializer();
+
+    /** User interface for displaying messages. */
     private final Ui ui = new Ui();
 
     public DataManager(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads task data from the file and populates the TaskManager.
+     * If the file data is corrupted, an error message is displayed, and all tasks are cleared.
+     *
+     * @param taskManager The TaskManager to populate with loaded tasks.
+     */
     public void loadData(TaskManager taskManager) {
         fileUtils = new FileUtils(filePath);
         fileUtils.loadFile();
@@ -43,6 +64,12 @@ public class DataManager {
         }
     }
 
+    /**
+     * Parses the task data from the file and adds the tasks to the TaskManager.
+     *
+     * @param dataStrings The list of strings representing task data.
+     * @param taskManager The TaskManager to populate with parsed tasks.
+     */
     private void parseFile(ArrayList<String> dataStrings, TaskManager taskManager) {
 
         for (String line : dataStrings) {
@@ -73,6 +100,13 @@ public class DataManager {
         }
     }
 
+    /**
+     * Converts a string representation of a date to a LocalDate object.
+     *
+     * @param unformattedDateString The string representation of the date.
+     * @return The parsed LocalDate object.
+     * @throws FileDataCorruptedException If the date string cannot be parsed due to format issues.
+     */
     private static LocalDate convertStringToLocalDate(String unformattedDateString) {
         LocalDate formattedDate = null;
         try {
@@ -84,21 +118,37 @@ public class DataManager {
         return formattedDate;
     }
 
-    public void saveTask(Task newTask) {
+    /**
+     * Saves a single task to the file.
+     *
+     * @param task The task to be saved.
+     */
+    public void saveTask(Task task) {
         try {
-            String taskText = taskSerializer.serializeTask(newTask);
+            String taskText = taskSerializer.serializeTask(task);
             fileUtils.appendToFile(taskText);
         } catch (IOException e) {
             ui.printWritingToFileError(e.getMessage());
         }
     }
 
-    public void saveAllTasks(ArrayList<Task> tasks) {
+    /**
+     * Saves all tasks to the file.
+     *
+     * @param tasks The list of tasks to be saved.
+     */
+    private void saveAllTasks(ArrayList<Task> tasks) {
         for (Task task : tasks) {
             saveTask(task);
         }
     }
 
+    /**
+     * Updates the file with the current tasks in the TaskManager.
+     * Clears the file and writes all tasks to it.
+     *
+     * @param taskManager The TaskManager managing the tasks to be saved.
+     */
     public void updateFile(TaskManager taskManager) {
         try {
             fileUtils.clearFile();

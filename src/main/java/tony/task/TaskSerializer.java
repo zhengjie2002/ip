@@ -1,6 +1,16 @@
 package tony.task;
 
 public class TaskSerializer {
+    /**
+     * Serializes a given task into a string representation for storing to file.
+     * The string format includes the task type, completion status, description, and additional
+     * details specific to the task type (e.g., deadline date for Deadline tasks,
+     * start and end dates for Event tasks).
+     *
+     * @param task The task to be serialized.
+     * @return A string representation of the task.
+     * @throws IllegalArgumentException If the task type is unknown.
+     */
     public String serializeTask(Task task) {
         StringBuilder sb = new StringBuilder();
         if (task instanceof Todo) {

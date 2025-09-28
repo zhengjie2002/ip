@@ -22,8 +22,16 @@ import java.util.Scanner;
 
 public class Tony {
 
+    /** The file path for storing task data. */
     private static final String FILE_PATH = "./data/tony.txt";
 
+    /**
+     * The entry point of the Tony application.
+     * Initializes the task manager, user interface, and data manager,
+     * then enters a loop to process user commands.
+     *
+     * @param args Command-line arguments.
+     */
     public static void main(String[] args) {
         TaskManager taskManager = new TaskManager();
         Scanner in = new Scanner(System.in);
