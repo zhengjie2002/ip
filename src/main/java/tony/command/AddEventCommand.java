@@ -6,21 +6,23 @@ import tony.task.Task;
 import tony.task.TaskManager;
 import tony.ui.Ui;
 
-public class AddEventCommand extends AddCommand {
-    private String from;
-    private String to;
+import java.time.LocalDate;
 
-    public AddEventCommand(String description, String from, String to, boolean isDone) {
+public class AddEventCommand extends AddCommand {
+    private LocalDate from;
+    private LocalDate to;
+
+    public AddEventCommand(String description, LocalDate from, LocalDate to, boolean isDone) {
         super(description, isDone);
         this.from = from;
         this.to = to;
     }
 
-    public String getFrom() {
+    public LocalDate getFrom() {
         return from;
     }
 
-    public String getTo() {
+    public LocalDate getTo() {
         return to;
     }
 

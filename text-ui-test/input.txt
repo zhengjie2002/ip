@@ -6,22 +6,23 @@ deadline /by 03-04-2025
 list
 mark 2
 todo
-event project meeting /from Thurs 2pm /to Thurs 5pm
+event project meeting /from 03-04-2025 /to 03-04-2025
 list
 todo read book
 list
 delete 2
-event do homwork /from Friday
-event do homework /to Friday
+event do homwork /from 09-03-2023
+event do homework /to 09-03-2023
 event /from Friday /to Friday
 list
 unmark 2
 delete
 mark 1
 unmark 100
-event team meeting /from Mon 2pm /to Mon 4pm
+event team meeting /from 09-03-2023 /to 03-04-2025
 delete 3
 mark 3
 list
 deadline Submit report /by Tomorrow
+event team outing /from Next Monday /to Next Tuesday
 bye

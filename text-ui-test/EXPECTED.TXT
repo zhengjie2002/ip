@@ -35,14 +35,14 @@ Error: The description of a task cannot be empty.
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this task:
-[E][ ] project meeting (from: Thurs 2pm to: Thurs 5pm)
+[E][ ] project meeting (from: Apr 3 2025 to: Apr 3 2025)
 Now you have 3 task(s) in the list.
 ____________________________________________________________
 ____________________________________________________________
 Here are the Tasks in your list:
 1.[D][ ] BuyChickenRice (by: Mar 4 2026)
 2.[T][X] get food
-3.[E][ ] project meeting (from: Thurs 2pm to: Thurs 5pm)
+3.[E][ ] project meeting (from: Apr 3 2025 to: Apr 3 2025)
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this task:
@@ -53,7 +53,7 @@ ____________________________________________________________
 Here are the Tasks in your list:
 1.[D][ ] BuyChickenRice (by: Mar 4 2026)
 2.[T][X] get food
-3.[E][ ] project meeting (from: Thurs 2pm to: Thurs 5pm)
+3.[E][ ] project meeting (from: Apr 3 2025 to: Apr 3 2025)
 4.[T][ ] read book
 ____________________________________________________________
 ____________________________________________________________
@@ -73,12 +73,12 @@ ____________________________________________________________
 ____________________________________________________________
 Here are the Tasks in your list:
 1.[D][ ] BuyChickenRice (by: Mar 4 2026)
-2.[E][ ] project meeting (from: Thurs 2pm to: Thurs 5pm)
+2.[E][ ] project meeting (from: Apr 3 2025 to: Apr 3 2025)
 3.[T][ ] read book
 ____________________________________________________________
 ____________________________________________________________
 OK, I've marked this task as not done yet:
- [E][ ] project meeting (from: Thurs 2pm to: Thurs 5pm)
+ [E][ ] project meeting (from: Apr 3 2025 to: Apr 3 2025)
 ____________________________________________________________
 ____________________________________________________________
 Error: Please provide a valid task number. Use the format: mark <task number> or unmark <task number> or delete <task number>
@@ -92,7 +92,7 @@ Error: No such task in the list.
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this task:
-[E][ ] team meeting (from: Mon 2pm to: Mon 4pm)
+[E][ ] team meeting (from: Mar 9 2023 to: Apr 3 2025)
 Now you have 4 task(s) in the list.
 ____________________________________________________________
 ____________________________________________________________
@@ -102,13 +102,16 @@ Now you have 3 task(s) in the list.
 ____________________________________________________________
 ____________________________________________________________
 Nice! I've marked this task as done:
- [E][X] team meeting (from: Mon 2pm to: Mon 4pm)
+ [E][X] team meeting (from: Mar 9 2023 to: Apr 3 2025)
 ____________________________________________________________
 ____________________________________________________________
 Here are the Tasks in your list:
 1.[D][X] BuyChickenRice (by: Mar 4 2026)
-2.[E][ ] project meeting (from: Thurs 2pm to: Thurs 5pm)
-3.[E][X] team meeting (from: Mon 2pm to: Mon 4pm)
+2.[E][ ] project meeting (from: Apr 3 2025 to: Apr 3 2025)
+3.[E][X] team meeting (from: Mar 9 2023 to: Apr 3 2025)
+____________________________________________________________
+____________________________________________________________
+Error: The date format is invalid. Please use the format DD-MM-YYYY.
 ____________________________________________________________
 ____________________________________________________________
 Error: The date format is invalid. Please use the format DD-MM-YYYY.

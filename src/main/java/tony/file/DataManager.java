@@ -58,23 +58,30 @@ public class DataManager {
                 addFromFileCommand = new AddToDoCommand(words[2], isDone);
                 break;
             case "deadline":
-                LocalDate deadlineDate = null;
-                try {
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATETIME_FORMAT);
-                    deadlineDate = LocalDate.parse(words[3], formatter);
-                } catch (DateTimeParseException e) {
-                    throw new FileDataCorruptedException();
-                }
+                LocalDate deadlineDate = convertStringToLocalDate(words[3]);
                 addFromFileCommand = new AddDeadlineCommand(words[2], deadlineDate, isDone);
                 break;
             case "event":
-                addFromFileCommand = new AddEventCommand(words[2], words[3], words[4], isDone);
+                LocalDate fromDate = convertStringToLocalDate(words[3]);
+                LocalDate toDate = convertStringToLocalDate(words[4]);
+                addFromFileCommand = new AddEventCommand(words[2], fromDate, toDate, isDone);
                 break;
             default:
                 throw new FileDataCorruptedException();
             }
             addFromFileCommand.executeFromFile(taskManager);
         }
+    }
+
+    private static LocalDate convertStringToLocalDate(String unformattedDateString) {
+        LocalDate formattedDate = null;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATETIME_FORMAT);
+            formattedDate = LocalDate.parse(unformattedDateString, formatter);
+        } catch (DateTimeParseException e) {
+            throw new FileDataCorruptedException();
+        }
+        return formattedDate;
     }
 
     public void saveTask(Task newTask) {

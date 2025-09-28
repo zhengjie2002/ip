@@ -12,6 +12,19 @@ import tony.exceptions.NoEventEndException;
 import tony.exceptions.NoSearchKeywordException;
 
 public class Parser {
+    private static final String INPUT_DATE_FORMAT = "dd-MM-yyyy";
+
+    private static LocalDate convertStringToLocalDate(String unformattedDateString) {
+        LocalDate formattedDate = null;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT);
+            formattedDate = LocalDate.parse(unformattedDateString, formatter);
+        } catch (DateTimeParseException e) {
+            throw new InvalidDateFormatException();
+        }
+        return formattedDate;
+    }
+
     private static Command parseEventCommand(String arguments) {
         int indexOfFrom = arguments.indexOf("/from");
         int indexOfTo = arguments.indexOf("/to");
@@ -31,12 +44,15 @@ public class Parser {
         if (from.isEmpty()) {
             throw new NoEventStartException();
         }
+        LocalDate fromDate = convertStringToLocalDate(from);
 
         String to = arguments.substring(indexOfTo + 3).trim();
         if (to.isEmpty()) {
             throw new NoEventEndException();
         }
-        return new AddEventCommand(description, from, to, false);
+        LocalDate toDate = convertStringToLocalDate(to);
+
+        return new AddEventCommand(description, fromDate, toDate, false);
     }
 
     private static Command parseDeadlineCommand(String arguments) {
@@ -54,15 +70,7 @@ public class Parser {
         if (by.isEmpty()) {
             throw new NoDeadlineException();
         }
-
-        // Convert "by" from DD-MM-YYYY to LocalDate
-        LocalDate deadlineDate = null;
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            deadlineDate = LocalDate.parse(by, formatter);
-        } catch (DateTimeParseException e) {
-            throw new InvalidDateFormatException();
-        }
+        LocalDate deadlineDate = convertStringToLocalDate(by);
 
         return new AddDeadlineCommand(description, deadlineDate, false);
     }

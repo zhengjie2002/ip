@@ -1,18 +1,22 @@
 package tony.task;
 
-public class Event extends Task {
-    protected String from;
-    protected String to;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-    public String getFrom() {
+public class Event extends Task {
+    protected LocalDate from;
+    protected LocalDate to;
+    private static final String OUTPUT_DATE_FORMAT = "MMM d yyyy";
+
+    public LocalDate getFrom() {
         return from;
     }
 
-    public String getTo() {
+    public LocalDate getTo() {
         return to;
     }
 
-    public Event(String description, String from, String to) {
+    public Event(String description, LocalDate from, LocalDate to) {
         super(description);
         this.from = from;
         this.to = to;
@@ -20,6 +24,8 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return ("[E]" + (isDone ? "[X] " : "[ ] ") + description + " (from: " + from + " to: " + to + ")");
+        return ("[E]" + (isDone ? "[X] " : "[ ] ") + description + " (from: " +
+                from.format(DateTimeFormatter.ofPattern(OUTPUT_DATE_FORMAT)) + " to: " +
+                to.format(DateTimeFormatter.ofPattern(OUTPUT_DATE_FORMAT)) + ")");
     }
 }
