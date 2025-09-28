@@ -168,6 +168,12 @@ public class Ui {
         System.out.println("____________________________________________________________");
     }
 
+    public void printEventEndBeforeStartError() {
+        System.out.println("____________________________________________________________");
+        System.out.println("Error: The end date of an event cannot be before the start time.");
+        System.out.println("____________________________________________________________");
+    }
+
     public String readCommand(Scanner in) {
         return in.nextLine();
     }

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import tony.exceptions.EventEndBeforeStartException;
 import tony.exceptions.InvalidDateFormatException;
 import tony.exceptions.NoDeadlineException;
 import tony.exceptions.NoDescriptionException;
@@ -51,6 +52,10 @@ public class Parser {
             throw new NoEventEndException();
         }
         LocalDate toDate = convertStringToLocalDate(to);
+
+        if(toDate.isBefore(fromDate)) {
+            throw new EventEndBeforeStartException();
+        }
 
         return new AddEventCommand(description, fromDate, toDate, false);
     }

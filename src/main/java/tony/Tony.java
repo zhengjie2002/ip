@@ -4,6 +4,7 @@ import tony.command.Command;
 import tony.command.ExitCommand;
 import tony.command.Parser;
 
+import tony.exceptions.EventEndBeforeStartException;
 import tony.exceptions.InvalidDateFormatException;
 import tony.exceptions.NoDeadlineException;
 import tony.exceptions.NoDescriptionException;
@@ -58,7 +59,11 @@ public class Tony {
             } catch (InvalidDateFormatException e) {
                 ui.printInvalidDateFormatError();
                 continue;
-            } catch (Exception e) {
+            } catch (EventEndBeforeStartException e) {
+                ui.printEventEndBeforeStartError();
+                continue;
+            }
+            catch (Exception e) {
                 ui.printError(e.getMessage());
                 continue;
             }
