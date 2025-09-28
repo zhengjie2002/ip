@@ -162,6 +162,12 @@ public class Ui {
         System.out.println("____________________________________________________________");
     }
 
+    public void printTaskAlreadyMarkedError() {
+        System.out.println("____________________________________________________________");
+        System.out.println("Error: This task is already marked as done/undone. No action has been taken.");
+        System.out.println("____________________________________________________________");
+    }
+
     public String readCommand(Scanner in) {
         return in.nextLine();
     }

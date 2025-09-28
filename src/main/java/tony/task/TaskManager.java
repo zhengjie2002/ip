@@ -1,5 +1,7 @@
 package tony.task;
 
+import tony.exceptions.TaskAlreadyMarkedException;
+
 import java.util.ArrayList;
 
 public class TaskManager {
@@ -18,12 +20,18 @@ public class TaskManager {
 
     public Task markTaskDone(int index) {
         Task task = tasks.get(index);
+        if (task.isDone()) {
+            throw new TaskAlreadyMarkedException();
+        }
         task.markDone();
         return task;
     }
 
     public Task markTaskUndone(int index) {
         Task task = tasks.get(index);
+        if (!task.isDone()) {
+            throw new TaskAlreadyMarkedException();
+        }
         task.unmarkDone();
         return task;
     }

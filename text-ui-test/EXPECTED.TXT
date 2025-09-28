@@ -77,8 +77,7 @@ Here are the Tasks in your list:
 3.[T][ ] read book
 ____________________________________________________________
 ____________________________________________________________
-OK, I've marked this task as not done yet:
- [E][ ] project meeting (from: Apr 3 2025 to: Apr 3 2025)
+Error: This task is already marked as done/undone. No action has been taken.
 ____________________________________________________________
 ____________________________________________________________
 Error: Please provide a valid task number. Use the format: mark <task number> or unmark <task number> or delete <task number>

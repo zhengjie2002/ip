@@ -1,5 +1,6 @@
 package tony.command;
 
+import tony.exceptions.TaskAlreadyMarkedException;
 import tony.file.DataManager;
 import tony.task.Task;
 import tony.task.TaskManager;
@@ -19,6 +20,8 @@ public class UnmarkCommand extends ModificationCommand {
             ui.printUnmarkAcknowledgement(taskUnmarked);
         } catch (NullPointerException | IndexOutOfBoundsException e) {
             ui.printTaskNotFoundError();
+        } catch (TaskAlreadyMarkedException e) {
+            ui.printTaskAlreadyMarkedError();
         }
     }
 }
