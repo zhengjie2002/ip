@@ -174,6 +174,13 @@ public class Ui {
         System.out.println("____________________________________________________________");
     }
 
+    public void printInvalidEventFormatError() {
+        System.out.println("____________________________________________________________");
+        System.out.println(
+                "Error: The event format is invalid. Please use the format: event <description> /from <start time> /to <end time>");
+        System.out.println("____________________________________________________________");
+    }
+
     public String readCommand(Scanner in) {
         return in.nextLine();
     }

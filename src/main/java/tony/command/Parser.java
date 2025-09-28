@@ -6,6 +6,7 @@ import java.time.format.DateTimeParseException;
 
 import tony.exceptions.EventEndBeforeStartException;
 import tony.exceptions.InvalidDateFormatException;
+import tony.exceptions.InvalidEventFormatException;
 import tony.exceptions.NoDeadlineException;
 import tony.exceptions.NoDescriptionException;
 import tony.exceptions.NoEventStartException;
@@ -28,12 +29,17 @@ public class Parser {
 
     private static Command parseEventCommand(String arguments) {
         int indexOfFrom = arguments.indexOf("/from");
-        int indexOfTo = arguments.indexOf("/to");
         if (indexOfFrom == -1) {
             throw new NoEventStartException();
         }
+
+        int indexOfTo = arguments.indexOf("/to");
         if (indexOfTo == -1) {
             throw new NoEventEndException();
+        }
+
+        if (indexOfTo < indexOfFrom) {
+            throw new InvalidEventFormatException();
         }
 
         String description = arguments.substring(0, indexOfFrom).trim();
@@ -53,7 +59,7 @@ public class Parser {
         }
         LocalDate toDate = convertStringToLocalDate(to);
 
-        if(toDate.isBefore(fromDate)) {
+        if (toDate.isBefore(fromDate)) {
             throw new EventEndBeforeStartException();
         }
 
