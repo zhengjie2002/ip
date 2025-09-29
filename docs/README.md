@@ -60,9 +60,7 @@ that you will always have your task list with you.
 ## Features
 
 > [!NOTE]
-
 > Information about command format
->
 
 * Commands are case-sensitive. e.g. `list` is a valid command but `List` or `LIST` are not.
 *
@@ -299,4 +297,5 @@ information.
  **Unmark**       | `unmark INDEX`<br> e.g., `unmark 3`                                                                          
  **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                          
  **Find**         | `find KEYWORD`<br> e.g., `find book`                                                                         
- **Exit**         | `bye`                                                                                                        
+ **Exit**         | `bye`
+
