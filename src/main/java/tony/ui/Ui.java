@@ -5,32 +5,42 @@ import java.util.Scanner;
 
 import tony.task.Task;
 
+/**
+ * The `Ui` class handles all user interactions, including displaying messages
+ * and reading user input. It provides methods to display various messages
+ * related to tasks and errors.
+ */
 public class Ui {
-    public void printWelcome() {
+
+    private static void printLine() {
         System.out.println("____________________________________________________________");
+    }
+
+    public void printWelcome() {
+        printLine();
         System.out.println("Hello! I'm Tony");
         System.out.println("What can I do for you?");
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void printGoodbye() {
         System.out.println("Bye. Hope to see you again soon!");
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void listAllTasks(ArrayList<Task> tasks) {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println("Here are the Tasks in your list:");
         int index = 1;
         for (Task task : tasks) {
             System.out.println(index + "." + task);
             index++;
         }
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void listMatchingTasks(ArrayList<Task> tasks) {
-        System.out.println("____________________________________________________________");
+        printLine();
         if (tasks.isEmpty()) {
             System.out.println("No matching tasks found.");
         } else {
@@ -41,148 +51,147 @@ public class Ui {
                 index++;
             }
         }
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void printTaskAddedMessage(Task newTask, int index) {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println("Got it. I've added this task:");
         System.out.println(newTask);
         System.out.println("Now you have " + index + " task(s) in the list.");
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void printUnknownCommandMessage() {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println("Sorry, I don't understand that command.");
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void printDeleteAcknowledgement(Task removedTask, int newTaskCount) {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println("Noted. I've removed this task:");
         System.out.println(" " + removedTask);
         System.out.println("Now you have " + newTaskCount + " task(s) in the list.");
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void printMarkAcknowledgement(Task task) {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(" " + task);
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void printUnmarkAcknowledgement(Task task) {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println(" " + task);
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void printMissingDescriptionError() {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println("Error: The description of a task cannot be empty.");
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void printMissingDeadlineError() {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println(
                 "Error: The deadline of a task cannot be empty. Use the format: deadline <description> /by <deadline>");
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void printMissingStartTimeError() {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println(
                 "Error: The start time of an event cannot be empty. Use the format: event <description> /from <start time> /to <end time>");
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void printMissingEndTimeError() {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println(
                 "Error: The end time of an event cannot be empty. Use the format: event <description> /from <start time> /to <end time>");
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void printInvalidTaskError() {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println(
                 "Error: Please provide a valid task number. Use the format: mark <task number> or unmark <task number> or delete <task number>");
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void printTaskNotFoundError() {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println("Error: No such task in the list.");
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void printReadFileError(String message) {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println("Error reading file: " + message);
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void printCreateFileError(String message) {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println("Error creating file: " + message);
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void printFileCorruptedError() {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println("Error: File data is corrupted.");
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void printWritingToFileError(String message) {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println("Error writing to file: " + message);
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void printMissingSearchKeywordError() {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println("Error: The search keyword cannot be empty. Use the format: find <keyword>");
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void printInvalidDateFormatError() {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println("Error: The date format is invalid. Please use the format DD-MM-YYYY.");
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void printError(String message) {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println("Error: " + message);
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void printTaskAlreadyMarkedError() {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println("Error: This task is already marked as done/undone. No action has been taken.");
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void printEventEndBeforeStartError() {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println("Error: The end date of an event cannot be before the start time.");
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public void printInvalidEventFormatError() {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println(
                 "Error: The event format is invalid. Please use the format: event <description> /from <start time> /to <end time>");
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public String readCommand(Scanner in) {
         return in.nextLine();
     }
-
 }
