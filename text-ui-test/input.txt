@@ -21,6 +21,7 @@ mark 1
 unmark 100
 event team meeting /from 09-03-2023 /to 03-04-2025
 delete 3
+find meeting
 mark 3
 list
 deadline Submit report /by Tomorrow
