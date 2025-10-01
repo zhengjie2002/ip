@@ -5,6 +5,7 @@ import tony.task.TaskManager;
 /**
  * Represents an abstract command to add a task.
  * The <code>AddCommand</code> class serves as a base class for specific add commands.
+ * This class extends the <code>Command</code> class and provides common functionality.
  */
 public abstract class AddCommand extends Command {
     protected String description;

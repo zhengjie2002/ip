@@ -3,6 +3,10 @@ package tony.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a task with a deadline. This class extends the `Task` class
+ * and includes additional functionality for handling date of deadline.
+ */
 public class Deadline extends Task {
     protected LocalDate deadlineDate;
 

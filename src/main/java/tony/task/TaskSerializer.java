@@ -1,5 +1,10 @@
 package tony.task;
 
+/**
+ * The `TaskSerializer` class provides functionality to serialize tasks into
+ * string representations for storage. It supports different task types such as
+ * `Todo`, `Deadline`, and `Event`.
+ */
 public class TaskSerializer {
     /**
      * Serializes a given task into a string representation for storing to file.

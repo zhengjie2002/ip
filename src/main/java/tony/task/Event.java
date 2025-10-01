@@ -3,6 +3,10 @@ package tony.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents an event with a start and end date. This class extends the `Task` class
+ * and includes additional functionality for handling event dates.
+ */
 public class Event extends Task {
     protected LocalDate from;
     protected LocalDate to;

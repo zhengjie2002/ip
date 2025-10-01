@@ -1,5 +1,8 @@
 package tony.task;
 
+/**
+ * Represents a Todo task. This class extends the `Task` class.
+ */
 public class Todo extends Task {
     public Todo(String description) {
         super(description);

@@ -4,6 +4,10 @@ import tony.exceptions.TaskAlreadyMarkedException;
 
 import java.util.ArrayList;
 
+/**
+ * The `TaskManager` class is responsible for managing a list of tasks.
+ * It provides methods to add, remove, mark, unmark, and search tasks.
+ */
 public class TaskManager {
     /** The list of tasks managed by this TaskManager. */
     private ArrayList<Task> tasks;
