@@ -100,6 +100,11 @@ Noted. I've removed this task:
 Now you have 3 task(s) in the list.
 ____________________________________________________________
 ____________________________________________________________
+Here are the matching tasks in your list:
+1.[E][ ] project meeting (from: Apr 3 2025 to: Apr 3 2025)
+2.[E][ ] team meeting (from: Mar 9 2023 to: Apr 3 2025)
+____________________________________________________________
+____________________________________________________________
 Nice! I've marked this task as done:
  [E][X] team meeting (from: Mar 9 2023 to: Apr 3 2025)
 ____________________________________________________________
